@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML 5 Service</title>
+</head>
+<body>
+<h3>HTML5 Service</h3>
+<p><img src="images/html5service.png"></p>
+<ul>
+<li><p>The HTML5 Service can be added to a station to help you create and modify the standard navigation bar/header/HTML wrapper</p></li>
+    <p><img src="images/navBar.png"></p>
+</ul>
+</ul>
+<h4>Getting Started</h4>
+<ul>
+    <li><p>Copy the latest version of the SBSTools modules to your workbench (typically C:\Niagara\"NiagaraVersion"\modules) and into the modules directory of whichever station (JACE or Server) you are using them. Workbench will have to be restarted for
+    the new modules to show up. You also may have to stop the niagara service/daemon before it will let you copy the files in.</p></li>
+    <li><p>Then open the SBSTools Palette. Once open drag the HTML5Service to your station under services.</p></li>
+    <p><img src="images/palette.png"></p>
+    <p><img src="images/addservice.png"></p>
+</ul>
+<h4>Html Last Generated</h4>
+<ul>
+    <li><p>This slot will update each time HTML is generated.</p></li>
+    <p><img src="images/lastGenerated.png"></p>
+</ul>
+<h4>HtmlFolder (Html Folder Path)</h4>
+<ul>
+    <li><p>This is the folder where all files will be created. You can leverage the HTML5Service to create multiple
+        user interfaces by adding additional instances of the service with different folder paths.</p></li>
+<p><img src="images/htmlFolderPath.png"></p>
+</ul>
+<h4>Site Title</h4>
+<ul>
+<li><p>Put the site name here. This is what shows up as the "title" in a web browser.</p></li>
+    <p><img src="images/siteTitle.png"></p>
+    <p><img src="images/titleInBrowser.png"></p>
+</ul>
+<h4>Customer Logo</h4>
+<ul>
+<h4>Logo Path</h4>
+    <p><img src="images/logoPath.png"></p>
+    <li><p>Paste logo path here. Use .png images and scale them to an appropriate size before loading into Niagara.</p></li>
+    <p><img src="images/logoStuff.png"></p>
+<h4>Min Logo Width</h4>
+    <li><p>The is the smallest your logo will get when scaling on mobile.</p></li>
+    <p><img src="images/minLogoWidth.png"></p>
+<h4>Max Logo Width</h4>
+    <li><p>The is the largest your logo will get - how it will be displayed in most web browsers.</p></li>
+    <p><img src="images/maxLogoWidth.png"></p>
+    <h4>Logo Top Padding</h4>
+    <li><p>The sets the vertical alignment of the logo</p></li>
+    <p><img src="images/padding.png"></p>
+
+
+
+
+</ul>
+
+
+<h4>Navigation Bar Color</h4>
+<ul>
+<h4>Nav Color</h4>
+<li><p>Select your desired nav bar color here using the color picker or and HTML/RGB color code. Use a color that matches the customers logo/styling.</p></li>
+    <p><img src="images/navcolor.png"></p>
+
+
+</ul>
+
+<h4>Outside Air Temp</h4>
+<ul>
+
+
+    <h4>Has Oat</h4>
+<li><p>Set to true if you have and would like to display outside air temperature in the header.</p></li>
+    <p><img src="images/oat.png"></p>
+<h4>Oat</h4>
+<li><p>Link from your OAT to this slot. I recommend using a global OAT. </p></li>
+    <p><img src="images/hasOAT.png"></p>
+    <p><img src="images/oatLink.png"></p>
+
+</ul>
+
+<h4>Outside Air Humidity</h4>
+<ul>
+
+<h4>Has Oah</h4>
+<li><p>Set to true if you have and would like to display outside air humidity in the header.</p></li>
+    <p><img src="images/oah.png"></p>
+
+    <h4>Oah</h4>
+<li><p>Link from your OAH to this slot. I recommend using a global OAH. </p></li>
+    <p><img src="images/hasOAH.png"></p>
+    <p><img src="images/oahLink.png"></p>
+
+</ul>
+
+<h4>Home Page Path</h4>
+<ul>
+    <li><p>This is where the home page is defined. Do NOT link directly to a px file, must be a folder or device or anything
+    else within the config of the station not under files. </p></li>
+    <p><img src="images/homePagePath.png"></p>
+
+</ul>
+
+
+
+<h4>Has Ent Sec</h4>
+<ul>
+<li><p>Set to true if site has enterprise security. This determines if the Access Control Nav item is shown, and determines which schedule link is used. For enterprise security the schedules under the EnterpriseSecurityService will be used, for HVAC the schedule folder under drivers will be used.</p></li>
+    <p><img src="images/hasEntSec.png"></p>
+    <p><img src="images/accessMenu.png"></p>
+
+</ul>
+    <h4>Equipment</h4>
+<ul>
+    <p><img src="images/equipment.png"></p>
+    <h4>Has Equipment</h4>
+    <li><p>Set to true if you have and would like to display an equipment list in the nav bar.
+        After setting to true go to actions -. Generate HTML to add the Equipment List to the service.</p></li>
+
+
+    <h4>Equipment List Name</h4>
+    <li><p>This is the display name your equipment list will show in the nav bar.</p></li>
+    <p><img src="images/hasEquipment.png"></p>
+
+    <h4>EquipmentList</h4>
+    <li><p>Will be automatically added to your service when Has Equipment is set to true and HTML is generated. Will also be automatically
+        removed when Has Equipment is set to false and HTML is generated.</p></li>
+
+
+<ul>
+    <li><h4>EquipmentNavItem</h4>
+        <ul><p>For each piece of equipment you would like to display in the nav bar dropdown you need to drag an EquipmentNavItem from the palette to the EquipmentList component.</p></ul>
+        <p><img src="images/equipNavItem.png"></p>
+
+        <ul>
+            <li><h4>Equip Name</h4>
+            <ul><p>This is the display name your equipment will show in the nav bar.</p></ul>
+
+            <li><h4>Equip Path</h4>
+            <ul><p>Link to your equipment here.</p></ul>
+            <p><img src="images/equipmentItem.png"></p>
+
+
+        </ul>
+
+</ul>
+
+
+
+<h4>Floorplans</h4>
+<ul>
+    <p><img src="images/floorplans.png"></p>
+    <h4>Has Floorplans</h4>
+    <li><p>Set to true if you have and would like to display floorplans in the nav bar.
+    After setting to true go to actions -. Generate HTML to add the Floorplan List to the service.</p></li>
+
+    <h4>Floorplan List Name</h4>
+    <li><p>This is the display name your floorplan list will show in the nav bar.</p></li>
+    <p><img src="images/hasFloorplans.png"></p>
+    <h4>FloorplanList</h4>
+    <li><p>Will be automatically added to your service when Has Floorplans is set to true and HTML is generated. Will also be automatically
+    removed when Has Floorplans is set to false and HTML is generated.</p></li>
+
+
+    <ul>
+        <li><h4>FloorplanNavItem</h4>
+            <ul><p>For each floorplan you would like to display in the nav bar dropdown you need to drag a FloorplansNavItem from the palette to the FloorplanList component.</p></ul>
+            <p><img src="images/floorplanNavItem.png"></p>
+            <ul>
+                <li><h4>Floorplan Name</h4>
+                    <ul><p>This is the display name your floorplan will show in the nav bar.</p></ul>
+
+                <li><h4>Floorplan Path</h4>
+                    <ul><p>Link to your floorplan here.</p></ul>
+                <p><img src="images/floorplanItem.png"></p>
+            </ul>
+
+</ul>
+
+
+
+<h4>Custom Nav Items</h4>
+<ul>
+    <p><img src="images/custom.png"></p>
+    <h4>Has Custom Nav Item</h4>
+    <li><p>Set to true if you have and would like to display a custom list in the nav bar.
+        After setting to true go to actions -. Generate HTML to add the Custom List to the service.</p></li>
+
+    <h4>Custom List Name</h4>
+    <li><p>This is the display name your custom list will show in the nav bar.</p></li>
+    <p><img src="images/hasCustomItem.png"></p>
+
+    <h4>CustomList</h4>
+    <li><p>Will be automatically added to your service when Has Custom Nav Item is set to true and HTML is generated. Will also be automatically
+        removed when Has Custom Nav Item is set to false and HTML is generated.</p></li>
+
+
+    <ul>
+        <li><h4>CustomNavItem</h4>
+            <ul><p>For each custom item you would like to display in the nav bar dropdown you need to drag an CustomNavItem from the palette to the CustomList component.</p></ul>
+            <p><img src="images/customNavItem.png"></p>
+            <ul>
+                <li><h4>Custom Item Name</h4>
+                    <ul><p>This is the display name your custom item will show in the nav bar.</p></ul>
+
+                <li><h4>Custom Path</h4>
+                    <ul><p>Link to your custom item here.</p></ul>
+                <p><img src="images/customItem.png"></p>
+
+            </ul>
+
+</ul>
+
+<h4>External Link</h4>
+<ul>
+    <p><img src="images/external.png"></p>
+<h4>Has External Link</h4>
+    <li><p>Set to true if you have and would like to add an external link in the nav bar.</p></li>
+    <h4>External Link Name</h4>
+    <li><p>This is the display name your external link will show in the nav bar.</p></li>
+    <h4>External Link Path</h4>
+    <li><p>Link to your external item here. External links will always open in a new tab.</p></li>
+    <p><img src="images/externalLink.png"></p>
+
+</ul>
+
+    <h4>Show Histories</h4>
+    <ul>
+        <li><p>Set to true if you would like a histories link in the nav bar. Links go the standard history chart builder.</p></li>
+    </ul>
+    <h4>Show Schedules</h4>
+    <ul>
+        <li><p>Set to true if you would like a schedules link in the nav bar. Links to either the folder below or the standard Enterprise Security Schedule path</p></li>
+    </ul>
+
+    <h4>HVAC Schedule Path</h4>
+    <ul>
+        <p><img src="images/schedules.png"></p>
+        <li><p>This path is only used when "Has Ent Sec" is set to false. Do NOT link directly to a px file, must be a folder or device or anything
+            else within the config of the station not under files. </p></li>
+        <p><img src="images/hvacSchedulePath.png"></p>
+    </ul>
+
+    <h4>Show Reports</h4>
+    <ul>
+        <li><p>Set to true if you would like a Standard Reports link in the nav bar. Links to standard reports - get them from a starter station or the starter components folder on the drive.</p></li>
+    </ul>
+    <h4>Show Docs</h4>
+    <ul>
+        <li><p>Set to true if you would like a Documents link in the nav bar. Links to the standard docs location -> file:^docs</p></li>
+    </ul>
+
+    <h4>Notifications</h4>
+    <ul>
+    <p><img src="images/notifications.png"></p>
+    <h4>Has Notification Console</h4>
+        <li><p>Set to true if you have and would like to display a notification console.</p></li>
+        <h4>Notification Count</h4>
+        <li><p>Link from your Notification count to this slot. I recommend using a numeric unit converter with precision set to 0. This will animate when count > 0. </p></li>
+        <h4>Notification Console Path</h4>
+        <li><p>Link to your notification console here.</p></li>
+        <p><img src="images/notificationConsole.png"></p>
+        <p><img src="images/notificationCountLink.png"></p>
+    </ul>
+
+
+    <h4>Alarms</h4>
+    <ul>
+        <p><img src="images/alarms.png"></p>
+        <h4>Alarm Count</h4>
+        <li><p>Link from your Notification count to this slot. I recommend using a numeric unit converter with precision set to 0. This will animate when count > 0. </p></li>
+        <h4>Alarm Console Path</h4>
+        <li><p>Link to your alarm console here.</p></li>
+        <p><img src="images/alarmCount.png"></p>
+        <p><img src="images/alarmCountLink.png"></p>
+    </ul>
+
+<h4>Generating the HTML files</h4>
+<ul>
+   <li><p>Under actions - choose Generate HTML. This will generate all of the necessary html files. You will need to set your nav file to look at graphics/html/index.html.</p></li>
+    <p><img src="images/generate.png"></p>
+
+
+</ul>
+    <h4>Displaying the HTML Wrapper & Graphics</h4>
+    <ul>
+    <li><p>A NAV file will be created in the html folder specified earlier. Assign this NAV file to your users and setup the user profiles as shown in the image below.</p></li>
+
+    <p><img src="images/userSetup.png"></p>
+
+</ul>
+
+
+</body>
+</html>
