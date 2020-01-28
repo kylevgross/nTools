@@ -1,0 +1,36 @@
+/* Module Build File */
+
+description     = "Niagara Tools"
+ext {
+}
+niagaraModule {
+  moduleName = "nTools"
+  preferredSymbol = "nt"
+  runtimeProfile = "rt"
+
+  modulePart {
+      name = "nTools-ux"
+      runtimeProfile = "ux"
+  }
+
+  modulePart {
+      name = "nTools-wb"
+      runtimeProfile = "wb"
+  }
+}
+
+dependencies {
+  compile "Tridium:nre:4.7"
+  compile "Tridium:baja:4.7"
+  compile "Tridium:alarm-rt:4.7"
+  compile "Tridium:hierarchy-rt:4.7"
+  compile "Tridium:history-rt:4.7"
+  compile "Tridium:schedule-rt:4.7"
+  compile "Tridium:bql-rt:4.7"
+  compile "Tridium:aaphp-rt:4.7"
+}
+
+moduleTestJar {
+  from('srcTest') {
+  }
+}
