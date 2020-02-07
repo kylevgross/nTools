@@ -45,3 +45,9 @@ jar {
     include 'doc/**/*.*'
   }}
 
+jar {
+  from('src') {
+    include 'html5/**/*.*'
+  }}
+
+

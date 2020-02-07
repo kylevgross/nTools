@@ -25,8 +25,13 @@ import javax.baja.sys.BAbstractService;
 import javax.baja.query.*;
 import javax.baja.collection.*;
 import javax.baja.status.*;
+import javax.xml.stream.events.StartDocument;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
-
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @NiagaraType
@@ -395,1094 +400,1423 @@ import java.util.Date;
 
 public class BHTML5 extends BComponent {
 
-    
-/*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
-/*@ $com.sbs.nTools.BHTML5(2435819158)1.0$ @*/
-/* Generated Wed Nov 13 06:24:51 EST 2019 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+
+    /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
+    /*@ $com.sbs.nTools.BHTML5(2435819158)1.0$ @*/
+    /* Generated Wed Nov 13 06:24:51 EST 2019 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
 ////////////////////////////////////////////////////////////////
 // Property "gettingStarted"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code gettingStarted} property.
-   * @see #getGettingStarted
-   * @see #setGettingStarted
-   */
-  public static final Property gettingStarted = newProperty(Flags.SUMMARY | Flags.READONLY, "To view the getting started guide -> right click on HTML5Service -> Views -> Guide Help", BFacets.make(BFacets.FIELD_WIDTH, 90));
-  
-  /**
-   * Get the {@code gettingStarted} property.
-   * @see #gettingStarted
-   */
-  public String getGettingStarted() { return getString(gettingStarted); }
-  
-  /**
-   * Set the {@code gettingStarted} property.
-   * @see #gettingStarted
-   */
-  public void setGettingStarted(String v) { setString(gettingStarted, v, null); }
+
+    /**
+     * Slot for the {@code gettingStarted} property.
+     *
+     * @see #getGettingStarted
+     * @see #setGettingStarted
+     */
+    public static final Property gettingStarted = newProperty(Flags.SUMMARY | Flags.READONLY, "To view the getting started guide -> right click on HTML5Service -> Views -> Guide Help", BFacets.make(BFacets.FIELD_WIDTH, 90));
+
+    /**
+     * Get the {@code gettingStarted} property.
+     *
+     * @see #gettingStarted
+     */
+    public String getGettingStarted() {
+        return getString(gettingStarted);
+    }
+
+    /**
+     * Set the {@code gettingStarted} property.
+     *
+     * @see #gettingStarted
+     */
+    public void setGettingStarted(String v) {
+        setString(gettingStarted, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "htmlLastGenerated"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code htmlLastGenerated} property.
-   * @see #getHtmlLastGenerated
-   * @see #setHtmlLastGenerated
-   */
-  public static final Property htmlLastGenerated = newProperty(Flags.SUMMARY | Flags.READONLY, "never", null);
-  
-  /**
-   * Get the {@code htmlLastGenerated} property.
-   * @see #htmlLastGenerated
-   */
-  public String getHtmlLastGenerated() { return getString(htmlLastGenerated); }
-  
-  /**
-   * Set the {@code htmlLastGenerated} property.
-   * @see #htmlLastGenerated
-   */
-  public void setHtmlLastGenerated(String v) { setString(htmlLastGenerated, v, null); }
+
+    /**
+     * Slot for the {@code htmlLastGenerated} property.
+     *
+     * @see #getHtmlLastGenerated
+     * @see #setHtmlLastGenerated
+     */
+    public static final Property htmlLastGenerated = newProperty(Flags.SUMMARY | Flags.READONLY, "never", null);
+
+    /**
+     * Get the {@code htmlLastGenerated} property.
+     *
+     * @see #htmlLastGenerated
+     */
+    public String getHtmlLastGenerated() {
+        return getString(htmlLastGenerated);
+    }
+
+    /**
+     * Set the {@code htmlLastGenerated} property.
+     *
+     * @see #htmlLastGenerated
+     */
+    public void setHtmlLastGenerated(String v) {
+        setString(htmlLastGenerated, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "htmlFolder"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code htmlFolder} property.
-   * @see #getHtmlFolder
-   * @see #setHtmlFolder
-   */
-  public static final Property htmlFolder = newProperty(Flags.SUMMARY, BOrd.make("file:^graphics/html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IDirectory"));
-  
-  /**
-   * Get the {@code htmlFolder} property.
-   * @see #htmlFolder
-   */
-  public BOrd getHtmlFolder() { return (BOrd)get(htmlFolder); }
-  
-  /**
-   * Set the {@code htmlFolder} property.
-   * @see #htmlFolder
-   */
-  public void setHtmlFolder(BOrd v) { set(htmlFolder, v, null); }
+
+    /**
+     * Slot for the {@code htmlFolder} property.
+     *
+     * @see #getHtmlFolder
+     * @see #setHtmlFolder
+     */
+    public static final Property htmlFolder = newProperty(Flags.SUMMARY, BOrd.make("file:^graphics/html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IDirectory"));
+
+    /**
+     * Get the {@code htmlFolder} property.
+     *
+     * @see #htmlFolder
+     */
+    public BOrd getHtmlFolder() {
+        return (BOrd) get(htmlFolder);
+    }
+
+    /**
+     * Set the {@code htmlFolder} property.
+     *
+     * @see #htmlFolder
+     */
+    public void setHtmlFolder(BOrd v) {
+        set(htmlFolder, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "navFile"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code navFile} property.
-   * @see #getNavFile
-   * @see #setNavFile
-   */
-  public static final Property navFile = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/nav.nav"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code navFile} property.
-   * @see #navFile
-   */
-  public BOrd getNavFile() { return (BOrd)get(navFile); }
-  
-  /**
-   * Set the {@code navFile} property.
-   * @see #navFile
-   */
-  public void setNavFile(BOrd v) { set(navFile, v, null); }
+
+    /**
+     * Slot for the {@code navFile} property.
+     *
+     * @see #getNavFile
+     * @see #setNavFile
+     */
+    public static final Property navFile = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/nav.nav"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code navFile} property.
+     *
+     * @see #navFile
+     */
+    public BOrd getNavFile() {
+        return (BOrd) get(navFile);
+    }
+
+    /**
+     * Set the {@code navFile} property.
+     *
+     * @see #navFile
+     */
+    public void setNavFile(BOrd v) {
+        set(navFile, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "equipHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code equipHTML} property.
-   * @see #getEquipHTML
-   * @see #setEquipHTML
-   */
-  public static final Property equipHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/equip.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code equipHTML} property.
-   * @see #equipHTML
-   */
-  public BOrd getEquipHTML() { return (BOrd)get(equipHTML); }
-  
-  /**
-   * Set the {@code equipHTML} property.
-   * @see #equipHTML
-   */
-  public void setEquipHTML(BOrd v) { set(equipHTML, v, null); }
+
+    /**
+     * Slot for the {@code equipHTML} property.
+     *
+     * @see #getEquipHTML
+     * @see #setEquipHTML
+     */
+    public static final Property equipHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/equip.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code equipHTML} property.
+     *
+     * @see #equipHTML
+     */
+    public BOrd getEquipHTML() {
+        return (BOrd) get(equipHTML);
+    }
+
+    /**
+     * Set the {@code equipHTML} property.
+     *
+     * @see #equipHTML
+     */
+    public void setEquipHTML(BOrd v) {
+        set(equipHTML, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "indexHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code indexHTML} property.
-   * @see #getIndexHTML
-   * @see #setIndexHTML
-   */
-  public static final Property indexHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/index.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code indexHTML} property.
-   * @see #indexHTML
-   */
-  public BOrd getIndexHTML() { return (BOrd)get(indexHTML); }
-  
-  /**
-   * Set the {@code indexHTML} property.
-   * @see #indexHTML
-   */
-  public void setIndexHTML(BOrd v) { set(indexHTML, v, null); }
+
+    /**
+     * Slot for the {@code indexHTML} property.
+     *
+     * @see #getIndexHTML
+     * @see #setIndexHTML
+     */
+    public static final Property indexHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/index.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code indexHTML} property.
+     *
+     * @see #indexHTML
+     */
+    public BOrd getIndexHTML() {
+        return (BOrd) get(indexHTML);
+    }
+
+    /**
+     * Set the {@code indexHTML} property.
+     *
+     * @see #indexHTML
+     */
+    public void setIndexHTML(BOrd v) {
+        set(indexHTML, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "scriptJS"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code scriptJS} property.
-   * @see #getScriptJS
-   * @see #setScriptJS
-   */
-  public static final Property scriptJS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/js/script.js"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code scriptJS} property.
-   * @see #scriptJS
-   */
-  public BOrd getScriptJS() { return (BOrd)get(scriptJS); }
-  
-  /**
-   * Set the {@code scriptJS} property.
-   * @see #scriptJS
-   */
-  public void setScriptJS(BOrd v) { set(scriptJS, v, null); }
+
+    /**
+     * Slot for the {@code scriptJS} property.
+     *
+     * @see #getScriptJS
+     * @see #setScriptJS
+     */
+    public static final Property scriptJS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/js/script.js"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code scriptJS} property.
+     *
+     * @see #scriptJS
+     */
+    public BOrd getScriptJS() {
+        return (BOrd) get(scriptJS);
+    }
+
+    /**
+     * Set the {@code scriptJS} property.
+     *
+     * @see #scriptJS
+     */
+    public void setScriptJS(BOrd v) {
+        set(scriptJS, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "styleCSS"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code styleCSS} property.
-   * @see #getStyleCSS
-   * @see #setStyleCSS
-   */
-  public static final Property styleCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/style.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code styleCSS} property.
-   * @see #styleCSS
-   */
-  public BOrd getStyleCSS() { return (BOrd)get(styleCSS); }
-  
-  /**
-   * Set the {@code styleCSS} property.
-   * @see #styleCSS
-   */
-  public void setStyleCSS(BOrd v) { set(styleCSS, v, null); }
+
+    /**
+     * Slot for the {@code styleCSS} property.
+     *
+     * @see #getStyleCSS
+     * @see #setStyleCSS
+     */
+    public static final Property styleCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/style.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code styleCSS} property.
+     *
+     * @see #styleCSS
+     */
+    public BOrd getStyleCSS() {
+        return (BOrd) get(styleCSS);
+    }
+
+    /**
+     * Set the {@code styleCSS} property.
+     *
+     * @see #styleCSS
+     */
+    public void setStyleCSS(BOrd v) {
+        set(styleCSS, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "bajascriptJs"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code bajascriptJs} property.
-   * @see #getBajascriptJs
-   * @see #setBajascriptJs
-   */
-  public static final Property bajascriptJs = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/js/bajascript.js"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code bajascriptJs} property.
-   * @see #bajascriptJs
-   */
-  public BOrd getBajascriptJs() { return (BOrd)get(bajascriptJs); }
-  
-  /**
-   * Set the {@code bajascriptJs} property.
-   * @see #bajascriptJs
-   */
-  public void setBajascriptJs(BOrd v) { set(bajascriptJs, v, null); }
+
+    /**
+     * Slot for the {@code bajascriptJs} property.
+     *
+     * @see #getBajascriptJs
+     * @see #setBajascriptJs
+     */
+    public static final Property bajascriptJs = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/js/bajascript.js"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code bajascriptJs} property.
+     *
+     * @see #bajascriptJs
+     */
+    public BOrd getBajascriptJs() {
+        return (BOrd) get(bajascriptJs);
+    }
+
+    /**
+     * Set the {@code bajascriptJs} property.
+     *
+     * @see #bajascriptJs
+     */
+    public void setBajascriptJs(BOrd v) {
+        set(bajascriptJs, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "floorplanHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code floorplanHTML} property.
-   * @see #getFloorplanHTML
-   * @see #setFloorplanHTML
-   */
-  public static final Property floorplanHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/floorplans.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code floorplanHTML} property.
-   * @see #floorplanHTML
-   */
-  public BOrd getFloorplanHTML() { return (BOrd)get(floorplanHTML); }
-  
-  /**
-   * Set the {@code floorplanHTML} property.
-   * @see #floorplanHTML
-   */
-  public void setFloorplanHTML(BOrd v) { set(floorplanHTML, v, null); }
+
+    /**
+     * Slot for the {@code floorplanHTML} property.
+     *
+     * @see #getFloorplanHTML
+     * @see #setFloorplanHTML
+     */
+    public static final Property floorplanHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/floorplans.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code floorplanHTML} property.
+     *
+     * @see #floorplanHTML
+     */
+    public BOrd getFloorplanHTML() {
+        return (BOrd) get(floorplanHTML);
+    }
+
+    /**
+     * Set the {@code floorplanHTML} property.
+     *
+     * @see #floorplanHTML
+     */
+    public void setFloorplanHTML(BOrd v) {
+        set(floorplanHTML, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "customHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code customHTML} property.
-   * @see #getCustomHTML
-   * @see #setCustomHTML
-   */
-  public static final Property customHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/customNav.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code customHTML} property.
-   * @see #customHTML
-   */
-  public BOrd getCustomHTML() { return (BOrd)get(customHTML); }
-  
-  /**
-   * Set the {@code customHTML} property.
-   * @see #customHTML
-   */
-  public void setCustomHTML(BOrd v) { set(customHTML, v, null); }
+
+    /**
+     * Slot for the {@code customHTML} property.
+     *
+     * @see #getCustomHTML
+     * @see #setCustomHTML
+     */
+    public static final Property customHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/customNav.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code customHTML} property.
+     *
+     * @see #customHTML
+     */
+    public BOrd getCustomHTML() {
+        return (BOrd) get(customHTML);
+    }
+
+    /**
+     * Set the {@code customHTML} property.
+     *
+     * @see #customHTML
+     */
+    public void setCustomHTML(BOrd v) {
+        set(customHTML, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "externalHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code externalHTML} property.
-   * @see #getExternalHTML
-   * @see #setExternalHTML
-   */
-  public static final Property externalHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/external.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code externalHTML} property.
-   * @see #externalHTML
-   */
-  public BOrd getExternalHTML() { return (BOrd)get(externalHTML); }
-  
-  /**
-   * Set the {@code externalHTML} property.
-   * @see #externalHTML
-   */
-  public void setExternalHTML(BOrd v) { set(externalHTML, v, null); }
+
+    /**
+     * Slot for the {@code externalHTML} property.
+     *
+     * @see #getExternalHTML
+     * @see #setExternalHTML
+     */
+    public static final Property externalHTML = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/html/external.html"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code externalHTML} property.
+     *
+     * @see #externalHTML
+     */
+    public BOrd getExternalHTML() {
+        return (BOrd) get(externalHTML);
+    }
+
+    /**
+     * Set the {@code externalHTML} property.
+     *
+     * @see #externalHTML
+     */
+    public void setExternalHTML(BOrd v) {
+        set(externalHTML, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "navCSS"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code navCSS} property.
-   * @see #getNavCSS
-   * @see #setNavCSS
-   */
-  public static final Property navCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/nav.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code navCSS} property.
-   * @see #navCSS
-   */
-  public BOrd getNavCSS() { return (BOrd)get(navCSS); }
-  
-  /**
-   * Set the {@code navCSS} property.
-   * @see #navCSS
-   */
-  public void setNavCSS(BOrd v) { set(navCSS, v, null); }
+
+    /**
+     * Slot for the {@code navCSS} property.
+     *
+     * @see #getNavCSS
+     * @see #setNavCSS
+     */
+    public static final Property navCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/nav.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code navCSS} property.
+     *
+     * @see #navCSS
+     */
+    public BOrd getNavCSS() {
+        return (BOrd) get(navCSS);
+    }
+
+    /**
+     * Set the {@code navCSS} property.
+     *
+     * @see #navCSS
+     */
+    public void setNavCSS(BOrd v) {
+        set(navCSS, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "logoCSS"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code logoCSS} property.
-   * @see #getLogoCSS
-   * @see #setLogoCSS
-   */
-  public static final Property logoCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/logo.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code logoCSS} property.
-   * @see #logoCSS
-   */
-  public BOrd getLogoCSS() { return (BOrd)get(logoCSS); }
-  
-  /**
-   * Set the {@code logoCSS} property.
-   * @see #logoCSS
-   */
-  public void setLogoCSS(BOrd v) { set(logoCSS, v, null); }
+
+    /**
+     * Slot for the {@code logoCSS} property.
+     *
+     * @see #getLogoCSS
+     * @see #setLogoCSS
+     */
+    public static final Property logoCSS = newProperty(Flags.HIDDEN, BOrd.make("file:^graphics/css/logo.css"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code logoCSS} property.
+     *
+     * @see #logoCSS
+     */
+    public BOrd getLogoCSS() {
+        return (BOrd) get(logoCSS);
+    }
+
+    /**
+     * Set the {@code logoCSS} property.
+     *
+     * @see #logoCSS
+     */
+    public void setLogoCSS(BOrd v) {
+        set(logoCSS, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "siteTitle"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code siteTitle} property.
-   * @see #getSiteTitle
-   * @see #setSiteTitle
-   */
-  public static final Property siteTitle = newProperty(Flags.SUMMARY, "Niagara", null);
-  
-  /**
-   * Get the {@code siteTitle} property.
-   * @see #siteTitle
-   */
-  public String getSiteTitle() { return getString(siteTitle); }
-  
-  /**
-   * Set the {@code siteTitle} property.
-   * @see #siteTitle
-   */
-  public void setSiteTitle(String v) { setString(siteTitle, v, null); }
+
+    /**
+     * Slot for the {@code siteTitle} property.
+     *
+     * @see #getSiteTitle
+     * @see #setSiteTitle
+     */
+    public static final Property siteTitle = newProperty(Flags.SUMMARY, "Niagara", null);
+
+    /**
+     * Get the {@code siteTitle} property.
+     *
+     * @see #siteTitle
+     */
+    public String getSiteTitle() {
+        return getString(siteTitle);
+    }
+
+    /**
+     * Set the {@code siteTitle} property.
+     *
+     * @see #siteTitle
+     */
+    public void setSiteTitle(String v) {
+        setString(siteTitle, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "logoPath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code logoPath} property.
-   * @see #getLogoPath
-   * @see #setLogoPath
-   */
-  public static final Property logoPath = newProperty(Flags.SUMMARY, BOrd.make("file:^graphics/images/logo.png"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
-  
-  /**
-   * Get the {@code logoPath} property.
-   * @see #logoPath
-   */
-  public BOrd getLogoPath() { return (BOrd)get(logoPath); }
-  
-  /**
-   * Set the {@code logoPath} property.
-   * @see #logoPath
-   */
-  public void setLogoPath(BOrd v) { set(logoPath, v, null); }
+
+    /**
+     * Slot for the {@code logoPath} property.
+     *
+     * @see #getLogoPath
+     * @see #setLogoPath
+     */
+    public static final Property logoPath = newProperty(Flags.SUMMARY, BOrd.make("file:^graphics/images/logo.png"), BFacets.make(BFacets.TARGET_TYPE, "baja:IFile"));
+
+    /**
+     * Get the {@code logoPath} property.
+     *
+     * @see #logoPath
+     */
+    public BOrd getLogoPath() {
+        return (BOrd) get(logoPath);
+    }
+
+    /**
+     * Set the {@code logoPath} property.
+     *
+     * @see #logoPath
+     */
+    public void setLogoPath(BOrd v) {
+        set(logoPath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "minLogoWidth"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code minLogoWidth} property.
-   * @see #getMinLogoWidth
-   * @see #setMinLogoWidth
-   */
-  public static final Property minLogoWidth = newProperty(Flags.SUMMARY, 150, null);
-  
-  /**
-   * Get the {@code minLogoWidth} property.
-   * @see #minLogoWidth
-   */
-  public double getMinLogoWidth() { return getDouble(minLogoWidth); }
-  
-  /**
-   * Set the {@code minLogoWidth} property.
-   * @see #minLogoWidth
-   */
-  public void setMinLogoWidth(double v) { setDouble(minLogoWidth, v, null); }
+
+    /**
+     * Slot for the {@code minLogoWidth} property.
+     *
+     * @see #getMinLogoWidth
+     * @see #setMinLogoWidth
+     */
+    public static final Property minLogoWidth = newProperty(Flags.SUMMARY, 150, null);
+
+    /**
+     * Get the {@code minLogoWidth} property.
+     *
+     * @see #minLogoWidth
+     */
+    public double getMinLogoWidth() {
+        return getDouble(minLogoWidth);
+    }
+
+    /**
+     * Set the {@code minLogoWidth} property.
+     *
+     * @see #minLogoWidth
+     */
+    public void setMinLogoWidth(double v) {
+        setDouble(minLogoWidth, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "maxLogoWidth"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code maxLogoWidth} property.
-   * @see #getMaxLogoWidth
-   * @see #setMaxLogoWidth
-   */
-  public static final Property maxLogoWidth = newProperty(Flags.SUMMARY, 250, null);
-  
-  /**
-   * Get the {@code maxLogoWidth} property.
-   * @see #maxLogoWidth
-   */
-  public double getMaxLogoWidth() { return getDouble(maxLogoWidth); }
-  
-  /**
-   * Set the {@code maxLogoWidth} property.
-   * @see #maxLogoWidth
-   */
-  public void setMaxLogoWidth(double v) { setDouble(maxLogoWidth, v, null); }
+
+    /**
+     * Slot for the {@code maxLogoWidth} property.
+     *
+     * @see #getMaxLogoWidth
+     * @see #setMaxLogoWidth
+     */
+    public static final Property maxLogoWidth = newProperty(Flags.SUMMARY, 250, null);
+
+    /**
+     * Get the {@code maxLogoWidth} property.
+     *
+     * @see #maxLogoWidth
+     */
+    public double getMaxLogoWidth() {
+        return getDouble(maxLogoWidth);
+    }
+
+    /**
+     * Set the {@code maxLogoWidth} property.
+     *
+     * @see #maxLogoWidth
+     */
+    public void setMaxLogoWidth(double v) {
+        setDouble(maxLogoWidth, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "logoTopPadding"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code logoTopPadding} property.
-   * @see #getLogoTopPadding
-   * @see #setLogoTopPadding
-   */
-  public static final Property logoTopPadding = newProperty(Flags.SUMMARY, -10, null);
-  
-  /**
-   * Get the {@code logoTopPadding} property.
-   * @see #logoTopPadding
-   */
-  public double getLogoTopPadding() { return getDouble(logoTopPadding); }
-  
-  /**
-   * Set the {@code logoTopPadding} property.
-   * @see #logoTopPadding
-   */
-  public void setLogoTopPadding(double v) { setDouble(logoTopPadding, v, null); }
+
+    /**
+     * Slot for the {@code logoTopPadding} property.
+     *
+     * @see #getLogoTopPadding
+     * @see #setLogoTopPadding
+     */
+    public static final Property logoTopPadding = newProperty(Flags.SUMMARY, -10, null);
+
+    /**
+     * Get the {@code logoTopPadding} property.
+     *
+     * @see #logoTopPadding
+     */
+    public double getLogoTopPadding() {
+        return getDouble(logoTopPadding);
+    }
+
+    /**
+     * Set the {@code logoTopPadding} property.
+     *
+     * @see #logoTopPadding
+     */
+    public void setLogoTopPadding(double v) {
+        setDouble(logoTopPadding, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "navColor"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code navColor} property.
-   * @see #getNavColor
-   * @see #setNavColor
-   */
-  public static final Property navColor = newProperty(Flags.SUMMARY, BBrush.makeSolid(BColor.orange), null);
-  
-  /**
-   * Get the {@code navColor} property.
-   * @see #navColor
-   */
-  public BBrush getNavColor() { return (BBrush)get(navColor); }
-  
-  /**
-   * Set the {@code navColor} property.
-   * @see #navColor
-   */
-  public void setNavColor(BBrush v) { set(navColor, v, null); }
+
+    /**
+     * Slot for the {@code navColor} property.
+     *
+     * @see #getNavColor
+     * @see #setNavColor
+     */
+    public static final Property navColor = newProperty(Flags.SUMMARY, BBrush.makeSolid(BColor.orange), null);
+
+    /**
+     * Get the {@code navColor} property.
+     *
+     * @see #navColor
+     */
+    public BBrush getNavColor() {
+        return (BBrush) get(navColor);
+    }
+
+    /**
+     * Set the {@code navColor} property.
+     *
+     * @see #navColor
+     */
+    public void setNavColor(BBrush v) {
+        set(navColor, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasOat"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasOat} property.
-   * @see #getHasOat
-   * @see #setHasOat
-   */
-  public static final Property hasOat = newProperty(Flags.SUMMARY, true, null);
-  
-  /**
-   * Get the {@code hasOat} property.
-   * @see #hasOat
-   */
-  public boolean getHasOat() { return getBoolean(hasOat); }
-  
-  /**
-   * Set the {@code hasOat} property.
-   * @see #hasOat
-   */
-  public void setHasOat(boolean v) { setBoolean(hasOat, v, null); }
+
+    /**
+     * Slot for the {@code hasOat} property.
+     *
+     * @see #getHasOat
+     * @see #setHasOat
+     */
+    public static final Property hasOat = newProperty(Flags.SUMMARY, true, null);
+
+    /**
+     * Get the {@code hasOat} property.
+     *
+     * @see #hasOat
+     */
+    public boolean getHasOat() {
+        return getBoolean(hasOat);
+    }
+
+    /**
+     * Set the {@code hasOat} property.
+     *
+     * @see #hasOat
+     */
+    public void setHasOat(boolean v) {
+        setBoolean(hasOat, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "oat"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code oat} property.
-   * @see #getOat
-   * @see #setOat
-   */
-  public static final Property oat = newProperty(Flags.SUMMARY, "0", null);
-  
-  /**
-   * Get the {@code oat} property.
-   * @see #oat
-   */
-  public String getOat() { return getString(oat); }
-  
-  /**
-   * Set the {@code oat} property.
-   * @see #oat
-   */
-  public void setOat(String v) { setString(oat, v, null); }
+
+    /**
+     * Slot for the {@code oat} property.
+     *
+     * @see #getOat
+     * @see #setOat
+     */
+    public static final Property oat = newProperty(Flags.SUMMARY, "0", null);
+
+    /**
+     * Get the {@code oat} property.
+     *
+     * @see #oat
+     */
+    public String getOat() {
+        return getString(oat);
+    }
+
+    /**
+     * Set the {@code oat} property.
+     *
+     * @see #oat
+     */
+    public void setOat(String v) {
+        setString(oat, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasOah"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasOah} property.
-   * @see #getHasOah
-   * @see #setHasOah
-   */
-  public static final Property hasOah = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasOah} property.
-   * @see #hasOah
-   */
-  public boolean getHasOah() { return getBoolean(hasOah); }
-  
-  /**
-   * Set the {@code hasOah} property.
-   * @see #hasOah
-   */
-  public void setHasOah(boolean v) { setBoolean(hasOah, v, null); }
+
+    /**
+     * Slot for the {@code hasOah} property.
+     *
+     * @see #getHasOah
+     * @see #setHasOah
+     */
+    public static final Property hasOah = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasOah} property.
+     *
+     * @see #hasOah
+     */
+    public boolean getHasOah() {
+        return getBoolean(hasOah);
+    }
+
+    /**
+     * Set the {@code hasOah} property.
+     *
+     * @see #hasOah
+     */
+    public void setHasOah(boolean v) {
+        setBoolean(hasOah, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "oah"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code oah} property.
-   * @see #getOah
-   * @see #setOah
-   */
-  public static final Property oah = newProperty(Flags.SUMMARY, "0", null);
-  
-  /**
-   * Get the {@code oah} property.
-   * @see #oah
-   */
-  public String getOah() { return getString(oah); }
-  
-  /**
-   * Set the {@code oah} property.
-   * @see #oah
-   */
-  public void setOah(String v) { setString(oah, v, null); }
+
+    /**
+     * Slot for the {@code oah} property.
+     *
+     * @see #getOah
+     * @see #setOah
+     */
+    public static final Property oah = newProperty(Flags.SUMMARY, "0", null);
+
+    /**
+     * Get the {@code oah} property.
+     *
+     * @see #oah
+     */
+    public String getOah() {
+        return getString(oah);
+    }
+
+    /**
+     * Set the {@code oah} property.
+     *
+     * @see #oah
+     */
+    public void setOah(String v) {
+        setString(oah, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "homePagePath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code homePagePath} property.
-   * @see #getHomePagePath
-   * @see #setHomePagePath
-   */
-  public static final Property homePagePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Graphics/Home"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
-  
-  /**
-   * Get the {@code homePagePath} property.
-   * @see #homePagePath
-   */
-  public BOrd getHomePagePath() { return (BOrd)get(homePagePath); }
-  
-  /**
-   * Set the {@code homePagePath} property.
-   * @see #homePagePath
-   */
-  public void setHomePagePath(BOrd v) { set(homePagePath, v, null); }
+
+    /**
+     * Slot for the {@code homePagePath} property.
+     *
+     * @see #getHomePagePath
+     * @see #setHomePagePath
+     */
+    public static final Property homePagePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Graphics/Home"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
+
+    /**
+     * Get the {@code homePagePath} property.
+     *
+     * @see #homePagePath
+     */
+    public BOrd getHomePagePath() {
+        return (BOrd) get(homePagePath);
+    }
+
+    /**
+     * Set the {@code homePagePath} property.
+     *
+     * @see #homePagePath
+     */
+    public void setHomePagePath(BOrd v) {
+        set(homePagePath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasEntSec"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasEntSec} property.
-   * @see #getHasEntSec
-   * @see #setHasEntSec
-   */
-  public static final Property hasEntSec = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasEntSec} property.
-   * @see #hasEntSec
-   */
-  public boolean getHasEntSec() { return getBoolean(hasEntSec); }
-  
-  /**
-   * Set the {@code hasEntSec} property.
-   * @see #hasEntSec
-   */
-  public void setHasEntSec(boolean v) { setBoolean(hasEntSec, v, null); }
+
+    /**
+     * Slot for the {@code hasEntSec} property.
+     *
+     * @see #getHasEntSec
+     * @see #setHasEntSec
+     */
+    public static final Property hasEntSec = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasEntSec} property.
+     *
+     * @see #hasEntSec
+     */
+    public boolean getHasEntSec() {
+        return getBoolean(hasEntSec);
+    }
+
+    /**
+     * Set the {@code hasEntSec} property.
+     *
+     * @see #hasEntSec
+     */
+    public void setHasEntSec(boolean v) {
+        setBoolean(hasEntSec, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasEquipment"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasEquipment} property.
-   * @see #getHasEquipment
-   * @see #setHasEquipment
-   */
-  public static final Property hasEquipment = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasEquipment} property.
-   * @see #hasEquipment
-   */
-  public boolean getHasEquipment() { return getBoolean(hasEquipment); }
-  
-  /**
-   * Set the {@code hasEquipment} property.
-   * @see #hasEquipment
-   */
-  public void setHasEquipment(boolean v) { setBoolean(hasEquipment, v, null); }
+
+    /**
+     * Slot for the {@code hasEquipment} property.
+     *
+     * @see #getHasEquipment
+     * @see #setHasEquipment
+     */
+    public static final Property hasEquipment = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasEquipment} property.
+     *
+     * @see #hasEquipment
+     */
+    public boolean getHasEquipment() {
+        return getBoolean(hasEquipment);
+    }
+
+    /**
+     * Set the {@code hasEquipment} property.
+     *
+     * @see #hasEquipment
+     */
+    public void setHasEquipment(boolean v) {
+        setBoolean(hasEquipment, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "equipListName"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code equipListName} property.
-   * @see #getEquipListName
-   * @see #setEquipListName
-   */
-  public static final Property equipListName = newProperty(Flags.SUMMARY, "Equipment", null);
-  
-  /**
-   * Get the {@code equipListName} property.
-   * @see #equipListName
-   */
-  public String getEquipListName() { return getString(equipListName); }
-  
-  /**
-   * Set the {@code equipListName} property.
-   * @see #equipListName
-   */
-  public void setEquipListName(String v) { setString(equipListName, v, null); }
+
+    /**
+     * Slot for the {@code equipListName} property.
+     *
+     * @see #getEquipListName
+     * @see #setEquipListName
+     */
+    public static final Property equipListName = newProperty(Flags.SUMMARY, "Equipment", null);
+
+    /**
+     * Get the {@code equipListName} property.
+     *
+     * @see #equipListName
+     */
+    public String getEquipListName() {
+        return getString(equipListName);
+    }
+
+    /**
+     * Set the {@code equipListName} property.
+     *
+     * @see #equipListName
+     */
+    public void setEquipListName(String v) {
+        setString(equipListName, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasFloorplans"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasFloorplans} property.
-   * @see #getHasFloorplans
-   * @see #setHasFloorplans
-   */
-  public static final Property hasFloorplans = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasFloorplans} property.
-   * @see #hasFloorplans
-   */
-  public boolean getHasFloorplans() { return getBoolean(hasFloorplans); }
-  
-  /**
-   * Set the {@code hasFloorplans} property.
-   * @see #hasFloorplans
-   */
-  public void setHasFloorplans(boolean v) { setBoolean(hasFloorplans, v, null); }
+
+    /**
+     * Slot for the {@code hasFloorplans} property.
+     *
+     * @see #getHasFloorplans
+     * @see #setHasFloorplans
+     */
+    public static final Property hasFloorplans = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasFloorplans} property.
+     *
+     * @see #hasFloorplans
+     */
+    public boolean getHasFloorplans() {
+        return getBoolean(hasFloorplans);
+    }
+
+    /**
+     * Set the {@code hasFloorplans} property.
+     *
+     * @see #hasFloorplans
+     */
+    public void setHasFloorplans(boolean v) {
+        setBoolean(hasFloorplans, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "floorplanListName"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code floorplanListName} property.
-   * @see #getFloorplanListName
-   * @see #setFloorplanListName
-   */
-  public static final Property floorplanListName = newProperty(Flags.SUMMARY, "Floorplans", null);
-  
-  /**
-   * Get the {@code floorplanListName} property.
-   * @see #floorplanListName
-   */
-  public String getFloorplanListName() { return getString(floorplanListName); }
-  
-  /**
-   * Set the {@code floorplanListName} property.
-   * @see #floorplanListName
-   */
-  public void setFloorplanListName(String v) { setString(floorplanListName, v, null); }
+
+    /**
+     * Slot for the {@code floorplanListName} property.
+     *
+     * @see #getFloorplanListName
+     * @see #setFloorplanListName
+     */
+    public static final Property floorplanListName = newProperty(Flags.SUMMARY, "Floorplans", null);
+
+    /**
+     * Get the {@code floorplanListName} property.
+     *
+     * @see #floorplanListName
+     */
+    public String getFloorplanListName() {
+        return getString(floorplanListName);
+    }
+
+    /**
+     * Set the {@code floorplanListName} property.
+     *
+     * @see #floorplanListName
+     */
+    public void setFloorplanListName(String v) {
+        setString(floorplanListName, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasCustomNavItem"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasCustomNavItem} property.
-   * @see #getHasCustomNavItem
-   * @see #setHasCustomNavItem
-   */
-  public static final Property hasCustomNavItem = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasCustomNavItem} property.
-   * @see #hasCustomNavItem
-   */
-  public boolean getHasCustomNavItem() { return getBoolean(hasCustomNavItem); }
-  
-  /**
-   * Set the {@code hasCustomNavItem} property.
-   * @see #hasCustomNavItem
-   */
-  public void setHasCustomNavItem(boolean v) { setBoolean(hasCustomNavItem, v, null); }
+
+    /**
+     * Slot for the {@code hasCustomNavItem} property.
+     *
+     * @see #getHasCustomNavItem
+     * @see #setHasCustomNavItem
+     */
+    public static final Property hasCustomNavItem = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasCustomNavItem} property.
+     *
+     * @see #hasCustomNavItem
+     */
+    public boolean getHasCustomNavItem() {
+        return getBoolean(hasCustomNavItem);
+    }
+
+    /**
+     * Set the {@code hasCustomNavItem} property.
+     *
+     * @see #hasCustomNavItem
+     */
+    public void setHasCustomNavItem(boolean v) {
+        setBoolean(hasCustomNavItem, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "customListName"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code customListName} property.
-   * @see #getCustomListName
-   * @see #setCustomListName
-   */
-  public static final Property customListName = newProperty(Flags.SUMMARY, "Custom", null);
-  
-  /**
-   * Get the {@code customListName} property.
-   * @see #customListName
-   */
-  public String getCustomListName() { return getString(customListName); }
-  
-  /**
-   * Set the {@code customListName} property.
-   * @see #customListName
-   */
-  public void setCustomListName(String v) { setString(customListName, v, null); }
+
+    /**
+     * Slot for the {@code customListName} property.
+     *
+     * @see #getCustomListName
+     * @see #setCustomListName
+     */
+    public static final Property customListName = newProperty(Flags.SUMMARY, "Custom", null);
+
+    /**
+     * Get the {@code customListName} property.
+     *
+     * @see #customListName
+     */
+    public String getCustomListName() {
+        return getString(customListName);
+    }
+
+    /**
+     * Set the {@code customListName} property.
+     *
+     * @see #customListName
+     */
+    public void setCustomListName(String v) {
+        setString(customListName, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasExternalLink"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasExternalLink} property.
-   * @see #getHasExternalLink
-   * @see #setHasExternalLink
-   */
-  public static final Property hasExternalLink = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasExternalLink} property.
-   * @see #hasExternalLink
-   */
-  public boolean getHasExternalLink() { return getBoolean(hasExternalLink); }
-  
-  /**
-   * Set the {@code hasExternalLink} property.
-   * @see #hasExternalLink
-   */
-  public void setHasExternalLink(boolean v) { setBoolean(hasExternalLink, v, null); }
+
+    /**
+     * Slot for the {@code hasExternalLink} property.
+     *
+     * @see #getHasExternalLink
+     * @see #setHasExternalLink
+     */
+    public static final Property hasExternalLink = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasExternalLink} property.
+     *
+     * @see #hasExternalLink
+     */
+    public boolean getHasExternalLink() {
+        return getBoolean(hasExternalLink);
+    }
+
+    /**
+     * Set the {@code hasExternalLink} property.
+     *
+     * @see #hasExternalLink
+     */
+    public void setHasExternalLink(boolean v) {
+        setBoolean(hasExternalLink, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "externalLinkName"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code externalLinkName} property.
-   * @see #getExternalLinkName
-   * @see #setExternalLinkName
-   */
-  public static final Property externalLinkName = newProperty(Flags.SUMMARY, "External Link", null);
-  
-  /**
-   * Get the {@code externalLinkName} property.
-   * @see #externalLinkName
-   */
-  public String getExternalLinkName() { return getString(externalLinkName); }
-  
-  /**
-   * Set the {@code externalLinkName} property.
-   * @see #externalLinkName
-   */
-  public void setExternalLinkName(String v) { setString(externalLinkName, v, null); }
+
+    /**
+     * Slot for the {@code externalLinkName} property.
+     *
+     * @see #getExternalLinkName
+     * @see #setExternalLinkName
+     */
+    public static final Property externalLinkName = newProperty(Flags.SUMMARY, "External Link", null);
+
+    /**
+     * Get the {@code externalLinkName} property.
+     *
+     * @see #externalLinkName
+     */
+    public String getExternalLinkName() {
+        return getString(externalLinkName);
+    }
+
+    /**
+     * Set the {@code externalLinkName} property.
+     *
+     * @see #externalLinkName
+     */
+    public void setExternalLinkName(String v) {
+        setString(externalLinkName, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "externalLinkPath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code externalLinkPath} property.
-   * @see #getExternalLinkPath
-   * @see #setExternalLinkPath
-   */
-  public static final Property externalLinkPath = newProperty(Flags.SUMMARY, "", null);
-  
-  /**
-   * Get the {@code externalLinkPath} property.
-   * @see #externalLinkPath
-   */
-  public String getExternalLinkPath() { return getString(externalLinkPath); }
-  
-  /**
-   * Set the {@code externalLinkPath} property.
-   * @see #externalLinkPath
-   */
-  public void setExternalLinkPath(String v) { setString(externalLinkPath, v, null); }
+
+    /**
+     * Slot for the {@code externalLinkPath} property.
+     *
+     * @see #getExternalLinkPath
+     * @see #setExternalLinkPath
+     */
+    public static final Property externalLinkPath = newProperty(Flags.SUMMARY, "", null);
+
+    /**
+     * Get the {@code externalLinkPath} property.
+     *
+     * @see #externalLinkPath
+     */
+    public String getExternalLinkPath() {
+        return getString(externalLinkPath);
+    }
+
+    /**
+     * Set the {@code externalLinkPath} property.
+     *
+     * @see #externalLinkPath
+     */
+    public void setExternalLinkPath(String v) {
+        setString(externalLinkPath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "showHistories"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code showHistories} property.
-   * @see #getShowHistories
-   * @see #setShowHistories
-   */
-  public static final Property showHistories = newProperty(Flags.SUMMARY, true, null);
-  
-  /**
-   * Get the {@code showHistories} property.
-   * @see #showHistories
-   */
-  public boolean getShowHistories() { return getBoolean(showHistories); }
-  
-  /**
-   * Set the {@code showHistories} property.
-   * @see #showHistories
-   */
-  public void setShowHistories(boolean v) { setBoolean(showHistories, v, null); }
+
+    /**
+     * Slot for the {@code showHistories} property.
+     *
+     * @see #getShowHistories
+     * @see #setShowHistories
+     */
+    public static final Property showHistories = newProperty(Flags.SUMMARY, true, null);
+
+    /**
+     * Get the {@code showHistories} property.
+     *
+     * @see #showHistories
+     */
+    public boolean getShowHistories() {
+        return getBoolean(showHistories);
+    }
+
+    /**
+     * Set the {@code showHistories} property.
+     *
+     * @see #showHistories
+     */
+    public void setShowHistories(boolean v) {
+        setBoolean(showHistories, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "showSchedules"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code showSchedules} property.
-   * @see #getShowSchedules
-   * @see #setShowSchedules
-   */
-  public static final Property showSchedules = newProperty(Flags.SUMMARY, true, null);
-  
-  /**
-   * Get the {@code showSchedules} property.
-   * @see #showSchedules
-   */
-  public boolean getShowSchedules() { return getBoolean(showSchedules); }
-  
-  /**
-   * Set the {@code showSchedules} property.
-   * @see #showSchedules
-   */
-  public void setShowSchedules(boolean v) { setBoolean(showSchedules, v, null); }
+
+    /**
+     * Slot for the {@code showSchedules} property.
+     *
+     * @see #getShowSchedules
+     * @see #setShowSchedules
+     */
+    public static final Property showSchedules = newProperty(Flags.SUMMARY, true, null);
+
+    /**
+     * Get the {@code showSchedules} property.
+     *
+     * @see #showSchedules
+     */
+    public boolean getShowSchedules() {
+        return getBoolean(showSchedules);
+    }
+
+    /**
+     * Set the {@code showSchedules} property.
+     *
+     * @see #showSchedules
+     */
+    public void setShowSchedules(boolean v) {
+        setBoolean(showSchedules, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "schedulePagePath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code schedulePagePath} property.
-   * @see #getSchedulePagePath
-   * @see #setSchedulePagePath
-   */
-  public static final Property schedulePagePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Drivers/Schedules"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
-  
-  /**
-   * Get the {@code schedulePagePath} property.
-   * @see #schedulePagePath
-   */
-  public BOrd getSchedulePagePath() { return (BOrd)get(schedulePagePath); }
-  
-  /**
-   * Set the {@code schedulePagePath} property.
-   * @see #schedulePagePath
-   */
-  public void setSchedulePagePath(BOrd v) { set(schedulePagePath, v, null); }
+
+    /**
+     * Slot for the {@code schedulePagePath} property.
+     *
+     * @see #getSchedulePagePath
+     * @see #setSchedulePagePath
+     */
+    public static final Property schedulePagePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Drivers/Schedules"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
+
+    /**
+     * Get the {@code schedulePagePath} property.
+     *
+     * @see #schedulePagePath
+     */
+    public BOrd getSchedulePagePath() {
+        return (BOrd) get(schedulePagePath);
+    }
+
+    /**
+     * Set the {@code schedulePagePath} property.
+     *
+     * @see #schedulePagePath
+     */
+    public void setSchedulePagePath(BOrd v) {
+        set(schedulePagePath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "showReports"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code showReports} property.
-   * @see #getShowReports
-   * @see #setShowReports
-   */
-  public static final Property showReports = newProperty(Flags.SUMMARY, true, null);
-  
-  /**
-   * Get the {@code showReports} property.
-   * @see #showReports
-   */
-  public boolean getShowReports() { return getBoolean(showReports); }
-  
-  /**
-   * Set the {@code showReports} property.
-   * @see #showReports
-   */
-  public void setShowReports(boolean v) { setBoolean(showReports, v, null); }
+
+    /**
+     * Slot for the {@code showReports} property.
+     *
+     * @see #getShowReports
+     * @see #setShowReports
+     */
+    public static final Property showReports = newProperty(Flags.SUMMARY, true, null);
+
+    /**
+     * Get the {@code showReports} property.
+     *
+     * @see #showReports
+     */
+    public boolean getShowReports() {
+        return getBoolean(showReports);
+    }
+
+    /**
+     * Set the {@code showReports} property.
+     *
+     * @see #showReports
+     */
+    public void setShowReports(boolean v) {
+        setBoolean(showReports, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "showDocs"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code showDocs} property.
-   * @see #getShowDocs
-   * @see #setShowDocs
-   */
-  public static final Property showDocs = newProperty(Flags.SUMMARY, true, null);
-  
-  /**
-   * Get the {@code showDocs} property.
-   * @see #showDocs
-   */
-  public boolean getShowDocs() { return getBoolean(showDocs); }
-  
-  /**
-   * Set the {@code showDocs} property.
-   * @see #showDocs
-   */
-  public void setShowDocs(boolean v) { setBoolean(showDocs, v, null); }
+
+    /**
+     * Slot for the {@code showDocs} property.
+     *
+     * @see #getShowDocs
+     * @see #setShowDocs
+     */
+    public static final Property showDocs = newProperty(Flags.SUMMARY, true, null);
+
+    /**
+     * Get the {@code showDocs} property.
+     *
+     * @see #showDocs
+     */
+    public boolean getShowDocs() {
+        return getBoolean(showDocs);
+    }
+
+    /**
+     * Set the {@code showDocs} property.
+     *
+     * @see #showDocs
+     */
+    public void setShowDocs(boolean v) {
+        setBoolean(showDocs, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasNotificationConsole"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasNotificationConsole} property.
-   * @see #getHasNotificationConsole
-   * @see #setHasNotificationConsole
-   */
-  public static final Property hasNotificationConsole = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasNotificationConsole} property.
-   * @see #hasNotificationConsole
-   */
-  public boolean getHasNotificationConsole() { return getBoolean(hasNotificationConsole); }
-  
-  /**
-   * Set the {@code hasNotificationConsole} property.
-   * @see #hasNotificationConsole
-   */
-  public void setHasNotificationConsole(boolean v) { setBoolean(hasNotificationConsole, v, null); }
+
+    /**
+     * Slot for the {@code hasNotificationConsole} property.
+     *
+     * @see #getHasNotificationConsole
+     * @see #setHasNotificationConsole
+     */
+    public static final Property hasNotificationConsole = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasNotificationConsole} property.
+     *
+     * @see #hasNotificationConsole
+     */
+    public boolean getHasNotificationConsole() {
+        return getBoolean(hasNotificationConsole);
+    }
+
+    /**
+     * Set the {@code hasNotificationConsole} property.
+     *
+     * @see #hasNotificationConsole
+     */
+    public void setHasNotificationConsole(boolean v) {
+        setBoolean(hasNotificationConsole, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "notificationCount"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code notificationCount} property.
-   * @see #getNotificationCount
-   * @see #setNotificationCount
-   */
-  public static final Property notificationCount = newProperty(Flags.SUMMARY, 0, null);
-  
-  /**
-   * Get the {@code notificationCount} property.
-   * @see #notificationCount
-   */
-  public double getNotificationCount() { return getDouble(notificationCount); }
-  
-  /**
-   * Set the {@code notificationCount} property.
-   * @see #notificationCount
-   */
-  public void setNotificationCount(double v) { setDouble(notificationCount, v, null); }
+
+    /**
+     * Slot for the {@code notificationCount} property.
+     *
+     * @see #getNotificationCount
+     * @see #setNotificationCount
+     */
+    public static final Property notificationCount = newProperty(Flags.SUMMARY, 0, null);
+
+    /**
+     * Get the {@code notificationCount} property.
+     *
+     * @see #notificationCount
+     */
+    public double getNotificationCount() {
+        return getDouble(notificationCount);
+    }
+
+    /**
+     * Set the {@code notificationCount} property.
+     *
+     * @see #notificationCount
+     */
+    public void setNotificationCount(double v) {
+        setDouble(notificationCount, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "notificationConsolePath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code notificationConsolePath} property.
-   * @see #getNotificationConsolePath
-   * @see #setNotificationConsolePath
-   */
-  public static final Property notificationConsolePath = newProperty(Flags.SUMMARY, BOrd.make("null"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
-  
-  /**
-   * Get the {@code notificationConsolePath} property.
-   * @see #notificationConsolePath
-   */
-  public BOrd getNotificationConsolePath() { return (BOrd)get(notificationConsolePath); }
-  
-  /**
-   * Set the {@code notificationConsolePath} property.
-   * @see #notificationConsolePath
-   */
-  public void setNotificationConsolePath(BOrd v) { set(notificationConsolePath, v, null); }
+
+    /**
+     * Slot for the {@code notificationConsolePath} property.
+     *
+     * @see #getNotificationConsolePath
+     * @see #setNotificationConsolePath
+     */
+    public static final Property notificationConsolePath = newProperty(Flags.SUMMARY, BOrd.make("null"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
+
+    /**
+     * Get the {@code notificationConsolePath} property.
+     *
+     * @see #notificationConsolePath
+     */
+    public BOrd getNotificationConsolePath() {
+        return (BOrd) get(notificationConsolePath);
+    }
+
+    /**
+     * Set the {@code notificationConsolePath} property.
+     *
+     * @see #notificationConsolePath
+     */
+    public void setNotificationConsolePath(BOrd v) {
+        set(notificationConsolePath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "hasAlarmConsole"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code hasAlarmConsole} property.
-   * @see #getHasAlarmConsole
-   * @see #setHasAlarmConsole
-   */
-  public static final Property hasAlarmConsole = newProperty(Flags.SUMMARY, false, null);
-  
-  /**
-   * Get the {@code hasAlarmConsole} property.
-   * @see #hasAlarmConsole
-   */
-  public boolean getHasAlarmConsole() { return getBoolean(hasAlarmConsole); }
-  
-  /**
-   * Set the {@code hasAlarmConsole} property.
-   * @see #hasAlarmConsole
-   */
-  public void setHasAlarmConsole(boolean v) { setBoolean(hasAlarmConsole, v, null); }
+
+    /**
+     * Slot for the {@code hasAlarmConsole} property.
+     *
+     * @see #getHasAlarmConsole
+     * @see #setHasAlarmConsole
+     */
+    public static final Property hasAlarmConsole = newProperty(Flags.SUMMARY, false, null);
+
+    /**
+     * Get the {@code hasAlarmConsole} property.
+     *
+     * @see #hasAlarmConsole
+     */
+    public boolean getHasAlarmConsole() {
+        return getBoolean(hasAlarmConsole);
+    }
+
+    /**
+     * Set the {@code hasAlarmConsole} property.
+     *
+     * @see #hasAlarmConsole
+     */
+    public void setHasAlarmConsole(boolean v) {
+        setBoolean(hasAlarmConsole, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "alarmCount"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code alarmCount} property.
-   * @see #getAlarmCount
-   * @see #setAlarmCount
-   */
-  public static final Property alarmCount = newProperty(Flags.SUMMARY, 0, null);
-  
-  /**
-   * Get the {@code alarmCount} property.
-   * @see #alarmCount
-   */
-  public double getAlarmCount() { return getDouble(alarmCount); }
-  
-  /**
-   * Set the {@code alarmCount} property.
-   * @see #alarmCount
-   */
-  public void setAlarmCount(double v) { setDouble(alarmCount, v, null); }
+
+    /**
+     * Slot for the {@code alarmCount} property.
+     *
+     * @see #getAlarmCount
+     * @see #setAlarmCount
+     */
+    public static final Property alarmCount = newProperty(Flags.SUMMARY, 0, null);
+
+    /**
+     * Get the {@code alarmCount} property.
+     *
+     * @see #alarmCount
+     */
+    public double getAlarmCount() {
+        return getDouble(alarmCount);
+    }
+
+    /**
+     * Set the {@code alarmCount} property.
+     *
+     * @see #alarmCount
+     */
+    public void setAlarmCount(double v) {
+        setDouble(alarmCount, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Property "alarmConsolePath"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code alarmConsolePath} property.
-   * @see #getAlarmConsolePath
-   * @see #setAlarmConsolePath
-   */
-  public static final Property alarmConsolePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Services/AlarmService/AllAlarms"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
-  
-  /**
-   * Get the {@code alarmConsolePath} property.
-   * @see #alarmConsolePath
-   */
-  public BOrd getAlarmConsolePath() { return (BOrd)get(alarmConsolePath); }
-  
-  /**
-   * Set the {@code alarmConsolePath} property.
-   * @see #alarmConsolePath
-   */
-  public void setAlarmConsolePath(BOrd v) { set(alarmConsolePath, v, null); }
+
+    /**
+     * Slot for the {@code alarmConsolePath} property.
+     *
+     * @see #getAlarmConsolePath
+     * @see #setAlarmConsolePath
+     */
+    public static final Property alarmConsolePath = newProperty(Flags.SUMMARY, BOrd.make("station:|slot:/Services/AlarmService/AllAlarms"), BFacets.make(BFacets.TARGET_TYPE, "baja:IComponent"));
+
+    /**
+     * Get the {@code alarmConsolePath} property.
+     *
+     * @see #alarmConsolePath
+     */
+    public BOrd getAlarmConsolePath() {
+        return (BOrd) get(alarmConsolePath);
+    }
+
+    /**
+     * Set the {@code alarmConsolePath} property.
+     *
+     * @see #alarmConsolePath
+     */
+    public void setAlarmConsolePath(BOrd v) {
+        set(alarmConsolePath, v, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Action "generateHTML"
 ////////////////////////////////////////////////////////////////
-  
-  /**
-   * Slot for the {@code generateHTML} action.
-   * @see #generateHTML()
-   */
-  public static final Action generateHTML = newAction(0, null);
-  
-  /**
-   * Invoke the {@code generateHTML} action.
-   * @see #generateHTML
-   */
-  public void generateHTML() { invoke(generateHTML, null, null); }
+
+    /**
+     * Slot for the {@code generateHTML} action.
+     *
+     * @see #generateHTML()
+     */
+    public static final Action generateHTML = newAction(0, null);
+
+    /**
+     * Invoke the {@code generateHTML} action.
+     *
+     * @see #generateHTML
+     */
+    public void generateHTML() {
+        invoke(generateHTML, null, null);
+    }
 
 ////////////////////////////////////////////////////////////////
 // Type
 ////////////////////////////////////////////////////////////////
-  
-  @Override
-  public Type getType() { return TYPE; }
-  public static final Type TYPE = Sys.loadType(BHTML5.class);
 
-/*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
+    @Override
+    public Type getType() {
+        return TYPE;
+    }
+
+    public static final Type TYPE = Sys.loadType(BHTML5.class);
+
+    /*+ ------------ END BAJA AUTO GENERATED CODE -------------- +*/
 
 
     public void doGenerateHTML() {
@@ -1541,7 +1875,7 @@ public class BHTML5 extends BComponent {
             // Query for sensor components
             String parentName = getName();
 
-            BOrd query = BOrd.make("station:|slot:/|bql:select equipName, equipPath from nTools:EquipmentNavItem where parent.parent.name = '" +parentName+ "'");
+            BOrd query = BOrd.make("station:|slot:/|bql:select equipName, equipPath from nTools:EquipmentNavItem where parent.parent.name = '" + parentName + "'");
             String equipNavName = "";
             String equipPath = "";
 
@@ -1766,7 +2100,7 @@ public class BHTML5 extends BComponent {
 
             // Query for sensor components
             String parentName = getName();
-            BOrd query3 = BOrd.make("station:|slot:/|bql:select floorplanName, floorplanPath from nTools:FloorplanNavItem where parent.parent.name = '" + parentName+"'");
+            BOrd query3 = BOrd.make("station:|slot:/|bql:select floorplanName, floorplanPath from nTools:FloorplanNavItem where parent.parent.name = '" + parentName + "'");
             String floorplanNavName = "";
             String floorplanPath = "";
 
@@ -1903,8 +2237,6 @@ public class BHTML5 extends BComponent {
         }
 
 
-
-
         BOrd fileOrd9 = getExternalHTML();
         BIFile file9 = null;
         String externalPath = getExternalLinkPath();
@@ -1953,10 +2285,6 @@ public class BHTML5 extends BComponent {
                 System.out.println("Error writing to " + fileOrd9.toString());
             }
         }
-
-
-
-
 
 
         BOrd fileOrd13 = getNavFile();
@@ -2021,7 +2349,7 @@ public class BHTML5 extends BComponent {
                     "\n" +
                     "            });\n" +
                     "             //this is the link to the alarm count on the alarm service wiresheet, either name it AllAlarms or copy your name here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/"+ serviceName+"\").get({\n" +
+                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
                     "               subscriber: allAlarmSub\n" +
                     "            });\n" +
                     "            \n" +
@@ -2044,7 +2372,7 @@ public class BHTML5 extends BComponent {
                     "\n" +
                     "            });\n" +
                     "             //this is the link to the alarm count on the alarm service wiresheet, either name it AllAlarms or copy your name here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/"+serviceName+"\").get({\n" +
+                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
                     "               subscriber: allNotifSub\n" +
                     "            });\n" +
                     "            \n" +
@@ -2067,7 +2395,7 @@ public class BHTML5 extends BComponent {
                     "}\n" +
                     "            });\n" +
                     "             //this is the link to the OAT, copy your ORD here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/"+serviceName+"\").get({\n" +
+                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
                     "               subscriber: oatSub\n" +
                     "            });\n" +
                     "            \n" +
@@ -2090,7 +2418,7 @@ public class BHTML5 extends BComponent {
                     "           \n" +
                     "            });\n" +
                     "             //this is the link to the OAH, copy your ORD here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/"+serviceName+"\").get({\n" +
+                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
                     "               subscriber: oahSub\n" +
                     "            });\n" +
                     "            \n" +
@@ -2150,231 +2478,49 @@ public class BHTML5 extends BComponent {
         String alarmMenu = "";
 
 
-
-
-        if (getHasEntSec() == true){
+        if (getHasEntSec() == true) {
             schedulePath = "station:|slot:/Services/EnterpriseSecurityService/schedules";
-            entSecMenu ="<li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService'><span>Access Control ▼</span></a><ul><li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService/personnel'><span>People</span></a></li>" +
+            entSecMenu = "<li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService'><span>Access Control ▼</span></a><ul><li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService/personnel'><span>People</span></a></li>" +
                     "<li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService/badges'><span>Badges</span></a></li><li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService/accessRights'><span>Access Rights</span></a></li>" +
                     "<li class><a target=\"hx\" href='station:|slot:/Services/AccessControlService/accessHistory'><span>Access History</span></a></li></ul></li>";
-        }
-        else
-        {
+        } else {
             schedulePath = getSchedulePagePath().toString();
             entSecMenu = "";
         }
-        if (getShowDocs() == true)
-        {
+        if (getShowDocs() == true) {
             docMenu = "<li><a target=\"hx\" href='file:^docs'><span>Documents</span></a></li>";
-        }
-        else
-        {
+        } else {
             docMenu = "";
         }
-        if (getShowReports() == true)
-        {
+        if (getShowReports() == true) {
             reportMenu = "<li class><a href='#'><span>Reports ▼</span></a><ul> <li class><a target=\"hx\" href='station:|slot:/Graphics/Reports/Active$20Overrides'><span>Active Overrides</span></a></li>" +
-             "<li class><a target=\"hx\" href='station:|slot:/Graphics/Reports/Override$20Report$20$28last$207$20days$29'><span>Audit Log (last 7 days)</span></a></li></ul></li>";
-        }
-        else
-        {
+                    "<li class><a target=\"hx\" href='station:|slot:/Graphics/Reports/Override$20Report$20$28last$207$20days$29'><span>Audit Log (last 7 days)</span></a></li></ul></li>";
+        } else {
             reportMenu = "";
         }
-        if (getShowHistories() == true)
-        {
+        if (getShowHistories() == true) {
             historiesMenu = "<li><a target=\"hx\" href='history:|view:webChart:ChartWidget'><span>Histories</span></a></li>";
-        }
-        else
-        {
+        } else {
             historiesMenu = "";
         }
-        if (getShowSchedules() == true)
-        {
+        if (getShowSchedules() == true) {
             schedulesMenu = "<li class><a target=\"hx\" href='" + schedulePath + "'><span>Schedules</span></a></li>";
-        }
-        else
-        {
+        } else {
             schedulesMenu = "";
         }
-        if (getHasNotificationConsole() == true)
-        {
-            notificationMenu = "<li id=\"Notifications\"><a id=\"NotificationConsoleLink\" target=\"hx\" href=\""   + notifConsolePath + "\"><span id=\"AllNotifications\" class=\"AllNotifications\" >Notification Count loading..</span></a></li>";
-        }
-        else
-        {
+        if (getHasNotificationConsole() == true) {
+            notificationMenu = "<li id=\"Notifications\"><a id=\"NotificationConsoleLink\" target=\"hx\" href=\"" + notifConsolePath + "\"><span id=\"AllNotifications\" class=\"AllNotifications\" >Notification Count loading..</span></a></li>";
+        } else {
             notificationMenu = "";
         }
-        if (getHasAlarmConsole() == true)
-        {
-            alarmMenu = "<li class='last' id=\"Alarms\"><a id=\"AlarmConsoleLink\" target=\"hx\" href=\""   + alarmConsolePath + "\"><span id=\"AllAlarms\" class=\"AllAlarms\" >Alarm Count loading..</span></a></li>";
-        }
-        else
-        {
+        if (getHasAlarmConsole() == true) {
+            alarmMenu = "<li class='last' id=\"Alarms\"><a id=\"AlarmConsoleLink\" target=\"hx\" href=\"" + alarmConsolePath + "\"><span id=\"AllAlarms\" class=\"AllAlarms\" >Alarm Count loading..</span></a></li>";
+        } else {
             alarmMenu = "";
         }
 
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
-            OrdQuery[] queries15 = fileOrd15.parse();
-            FilePath filePath15 = (FilePath) queries15[queries15.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
-            file15 = BFileSystem.INSTANCE.makeFile(filePath15);
-            File localFile15 = BFileSystem.INSTANCE.pathToLocalFile(filePath15);
-            FileWriter fw = new FileWriter(localFile15, false);
-            fw.write("<!-- Begin auto generated HTML -->" +
-                    "\n" +
-                    "<!DOCTYPE html>\n" +
-                    "<html lang=\"en\">\n" +
-                    "<head>\n" +
-                    " <title id=\"title\">"+ siteTitle +"</title>" +
-                    "\n" +
-                    " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n" +
-                    " <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\"/>\n" +
-                    " \n" +
-                    " <!-- Link to stylesheet-->\n" +
-                    " <link href=\"css/style.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\">\n" +
-                    " <link href=\"css/nav.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\">\n" +
-                    " <link href=\"css/logo.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\">\n" +
 
-                    " <script src=\"module://js|module://js/rc/jquery/jquery-3.2.0.min.js\" type=\"text/javascript\"></script>\n" +
-                    " <script src=\"js/script.js\" type=\"text/javascript\"></script>\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "<script type='text/javascript'>var require = typeof require === 'undefined' ? {} : require;</script>\n" +
-                    " <script>\n" +
-                            "  var require = {};\n" +
-                            "  require.urlArgs=require.urlArgs ||  'version=1449701027522';\n" +
-                            "  require.waitSeconds=0;\n" +
-                            "  require.config=require.config || {};\n" +
-                            "  require.config.ord=require.config.ord || {};\n" +
-                            "  require.config.ord.useLocalWbRc=false;\n" +
-                            "  require.config.baja=require.config.baja || {};\n" +
-                            "  require.config.baja.webdev=false;\n" +
-                            "  require.config.lex=require.config.lex || {};\n" +
-                            "  require.config.lex.webdev=false;\n" +
-                            "  require.hbs=require.hbs || {};\n" +
-                            "  require.hbs.disableI18n=require.hbs.disableI18n===undefined?true:require.hbs.disableI18n;\n" +
-                            "  require.config['nmodule/js/rc/lex/lex']={storageId:'1449701027522',lang:'en-US'};\n" +
-                            "  require.paths=require.paths || {};\n" +
-                            "  require.paths.nmodule=require.paths.nmodule || '/module';\n" +
-                            "  require.paths.Promise=require.paths.Promise || '/module/js/rc/bluebird/bluebird.min';\n" +
-                            "  require.paths.bajaScript=require.paths.bajaScript || '/module/bajaScript/rc';\n" +
-                            "  require.paths.bajaux=require.paths.bajaux || '/module/bajaux/rc';\n" +
-                            "  require.paths.jquery=require.paths.jquery || '/module/js/rc/jquery/jquery-3.2.0.min';\n" +
-                            "  require.paths.dialogs=require.paths.dialogs || '/module/js/rc/dialogs/dialogs.built.min';\n" +
-                            "  require.paths.ord=require.paths.ord || '/module/js/com/tridium/js/require/ord';\n" +
-                            "  require.paths.lex=require.paths.lex || '/module/js/rc/lex/lexplugin';\n" +
-                            "  require.paths.css=require.paths.css || '/module/js/com/tridium/js/ext/require/css';\n" +
-                            "  require.paths.baja=require.paths.baja || '/module/bajaScript/rc/plugin/baja';\n" +
-                            "  require.paths.obix=require.paths.obix || '/module/obixjs/rc/obix.built.min';\n" +
-                            "  require.paths.Handlebars=require.paths.Handlebars || '/module/js/rc/handlebars/handlebars.min-v2.0.0';\n" +
-                            "  require.paths.underscore=require.paths.underscore || '/module/js/rc/underscore/underscore.min';\n" +
-                            "  require.paths.hbs=require.paths.hbs || '/module/js/rc/require-handlebars-plugin/hbs.built.min';\n" +
-                            "  require.paths.moment=require.paths.moment || '/module/js/rc/moment/moment.min';\n" +
-                            "  require.paths.d3=require.paths.d3 || '/module/js/rc/d3/d3.min';\n" +
-                            "  require.paths.hx=require.paths.hx || '/module/hx/javax/baja/hx/hx';\n" +
-                            "  require.paths.jqueryContextMenu=require.paths.jqueryContextMenu || '/module/js/rc/jquery/contextMenu/jquery.contextMenu';\n" +
-                            "  require.paths.ace=require.paths.ace || '/module/js/rc/ace';\n" +
-                            "  require.shim=require.shim || {};\n" +
-                            "  require.shim.d3=require.shim.d3 || {};\n" +
-                            "  require.shim.d3.exports=require.shim.d3.exports || 'd3';\n" +
-                            "  require.shim.jqueryContextMenu=require.shim.jqueryContextMenu || {deps:['jquery'],exports:'jQuery'};\n" +
-                            "  require.shim.base=require.shim.base || {deps:['baja!']};\n" +
-                            " </script>" +
-                    " <script type='text/javascript'  src='module://js/com/tridium/js/ext/require/require.min.js'></script>\n" +
-                    " \n" +
-                    " </head>\n" +
-                    " <body>\n" +
-                    "\n" +
-                    "  <div id=\"header\">\n" +
-                    "     <div id=\"header-image\" ><a href=\"index.html\"><img id=\"logo\" alt=\"logo\" src=\"" + logoPath + "\"></a></div>\n" +
-                    "     \n" +
-                    "     <div id=\"header-info\"> \n" +
-                    "      <div id=\"header-info-username\">&nbsp;\n" +
-                    "       <div title=\"Click here to log out\" class=\"header-info-username ellipsis\">Getting username..\n" +
-                    "       </div>\n" +
-                    "      </div>\n" +
-                    "      <div  class=\"header-info-logout\">\n" +
-                    "        <a title=\"Click here to log out\" href=\"/logout\" target=\"_self\">Log Out</a>\n" +
-                    "      </div>\n" +
-                    "         <div title=\"Click here to log out\" id=\"header-info-arrow-down\">▼\n" +
-                    "         </div>\n" +
-                    "         <div id=\"header-info-arrow-up\">▲\n" +
-                    "         </div>\n" +
-                    "            <!-- Oa Temp-->\n" +
-                    "            <div id=\"temp\">OA-T loading..</div>\n" +
-                    "           <!-- Oa Humid-->\n" +
-                    "            <div id=\"humid\">OA-H loading..</div>\n" +
-                    "      </div>\n" +
-                    "      </div>\n" +
-                    "      \n" +
-                    "<!-- Begin responsive nav bar-->\n" +
-                    "<div id='cssmenu'>\n" +
-                    "<ul>\n" +
-                    "  \n" +
-                    "   <li class><a href='index.html'><span>Home</span></a>\n" +
-                    "   </li>\n" +
-                    "   \n" +  entSecMenu +
-                    "   \n" +
-                    "   <li id=\"equipMenu\" class><a href='#'><span></span></a>\n" +
-                    "   </li>\n" +
-                    "   <li id=\"floorplanMenu\" class><a href='#'><span></span></a>\n" +
-                    "   </li>\n" +
-                    "   <li id=\"customMenu\" class><a href='#'><span></span></a>\n" +
-                    "   </li>\n" +
-                    "    <li id=\"ExternalLink\" class><a href='#'><span></span></a>\n" +
-                    "   </li>\n" +
-                    "   \n" + historiesMenu +
-                    "   \n" + schedulesMenu +
-                    "   \n" + reportMenu +
-                    "   \n" + docMenu +
-                    "   \n" + notificationMenu +
-                    "   \n" + alarmMenu +
-                    "</ul>\n" +
-                    "</div>\n" +
-                    "\n" +
-                    "<div class=\"iframe-container\">\n" +
-                    " <iframe name=\"hx\" id=\"appletcontainer\" src=\""+ homePagePath +"\" ></iframe>\n" +
-                    "</div>\n" +
-                    "\n" +
-                    "\n" +
-                    "<script type=\"text/javascript\" src=\"js/bajascript.js\">\n" +
-                    "</script>\n" +
-                    "<script type=\"text/javascript\">\n" +
-                    "  \n" +
-                    "   $(document).ready(function(){\n" +
-                    "   $.get(\"equip.html|view:web:FileDownloadView\", function(data){\n" +
-                    "    $(\"#equipMenu\").replaceWith(data);\n" +
-                    "});\n" +
-                    "     $.get(\"customNav.html|view:web:FileDownloadView\", function(data){\n" +
-                    "    $(\"#customMenu\").replaceWith(data);\n" +
-                    "});\n" +
-                    "\n" +
-                    "$.get(\"floorplans.html|view:web:FileDownloadView\", function(data){\n" +
-                    "    $(\"#floorplanMenu\").replaceWith(data);\n" +
-                    "});\n" +
-                    "\n" +
-                      "     \n" +
-                    "     $.get(\"external.html|view:web:FileDownloadView\", function(data){\n" +
-                    "    $(\"#ExternalLink\").replaceWith(data);\n" +
-                    "});\n" +
-                    "   });\n" +
-                    "</script>\n" +
-                    " \n" +
-                    "</body>\n" +
-                    "</html>\n");
-            fw.close();
-            System.out.println("Success writing to " + fileOrd15.toString());
-
-
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
-            System.out.println("Error writing to " + fileOrd15.toString());
-        }
 
         BOrd fileOrd16 = getScriptJS();
         BIFile file16 = null;
@@ -2477,7 +2623,7 @@ public class BHTML5 extends BComponent {
                     "overflow-y:auto;\n" +
                     "overflow-x:auto;\n" +
                     "}\n" +
-            "/*Generally everything below this point should work out of the box and not need to be changed*/\n" +
+                    "/*Generally everything below this point should work out of the box and not need to be changed*/\n" +
                     "\n" +
                     "/*navbar*/\n" +
                     "\n" +
@@ -2958,6 +3104,112 @@ public class BHTML5 extends BComponent {
         { // Call configFail() to set the service into fault
             System.out.println("Error writing to " + fileOrd17.toString());
         }
+
+        //You can also create a File Path from an ORD
+        BOrd query = getIndexHTML();
+        OrdQuery[] queries = query.parse();
+        FilePath fp = (FilePath)queries[queries.length - 1];
+
+
+//Our BIFile object that we will get back
+        BIFile myFile = null;
+
+//Wrap our call in a try catch block to handle IO exception
+        try
+        {
+            myFile = BFileSystem.INSTANCE.makeFile(fp);
+
+            //manipulate new file ...
+
+        }catch(IOException ioe)
+        {
+            //handle error
+        }
+//use an ORD to retrieve our file
+        BOrd fileQuery =  BOrd.make("module://nTools/html5/html/index.html");
+
+//use a try catch block in case the file doesn't exist
+        try
+        {
+            //if we are executing this code from a component in the station,
+            //we can resolve our query using the this keyword
+            BIFile myFile3 = (BIFile)fileQuery.get(this);
+
+            //create an input stream reader from the file input stream
+            InputStreamReader in = new InputStreamReader( myFile3.getInputStream() );
+
+            //create a try/finally block to force input stream is always closed.
+            try
+            {
+                //use the input stream and create a buffered reader to read
+                //each line
+                BufferedReader bin = new BufferedReader( in );
+
+                String str;
+                while( ( str = bin.readLine() ) != null )
+                {
+
+
+                    //You can also create a File Path from an ORD
+                    BOrd myFileOrd = getIndexHTML();
+
+                    //use a try catch block in case the file doesn't exist
+                    try
+                    {
+
+                        String str2 = str.replace("homePagePath", homePagePath).replace("logoPath", logoPath).replace("historiesMenu",historiesMenu).replace("schedulesMenu",schedulesMenu).replace("reportMenu",reportMenu).replace("docMenu",docMenu).replace("notificationMenu",notificationMenu).replace("alarmMenu",alarmMenu).replace("entSecMenu",entSecMenu);
+
+
+
+
+
+
+
+
+
+                        //if we are executing this code from a component in the station,
+                        //we can resolve our query using the this keyword
+                        BIFile myFile2 = (BIFile)myFileOrd.get(this);
+
+                        FilePath filePath = myFile2.getFilePath();
+                        File localFile22 = BFileSystem.INSTANCE.pathToLocalFile(filePath);
+
+                        FileWriter fw = new FileWriter(localFile22,true);
+                        fw.write(str2 + "\n");
+                        fw.close();
+                    }
+                    //handle case where file isn't found or doesn't exist.
+                    catch(UnresolvedException re)
+                    {
+
+                    }
+                    //handle IO exceptions from trying to write to the file
+                    catch(IOException ioe)
+                    {
+
+                    }
+
+                }
+
+            }
+            //make sure to close the input stream
+            finally
+            {
+                in.close();
+            }
+
+        }
+//handle case where file isn't found or doesn't exist.
+        catch(UnresolvedException re)
+        {
+
+        }
+//handle IO exceptions from trying to read from file
+        catch(IOException ioe)
+        {
+
+        }
+
 
 
         System.out.println("HTML Generation completed at: " + date);
