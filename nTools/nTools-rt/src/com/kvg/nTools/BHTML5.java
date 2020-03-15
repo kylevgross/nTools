@@ -32,6 +32,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.io.*;
+import javax.baja.file.*;
+import javax.baja.sys.*;
+import javax.baja.naming.*;
 
 
 @NiagaraType
@@ -2295,7 +2299,6 @@ public class BHTML5 extends BComponent {
             // assume the FilePath is the last sub query of the full ORD.
             OrdQuery[] queries13 = fileOrd13.parse();
             FilePath filePath13 = (FilePath) queries13[queries13.length - 1];
-            // Once we have the FilePath, we use it to create the file.
             // Niagara provides a BFileSystem space which gives us access
             // to the local file system where we create the file:
             file13 = BFileSystem.INSTANCE.makeFile(filePath13);
@@ -2311,158 +2314,90 @@ public class BHTML5 extends BComponent {
             System.out.println("Error writing to " + fileOrd13.toString());
         }
 
-        BOrd fileOrd14 = getBajascriptJs();
-        BIFile file14 = null;
-        String serviceName = getName();
-
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
-            OrdQuery[] queries14 = fileOrd14.parse();
-            FilePath filePath14 = (FilePath) queries14[queries14.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
-            file14 = BFileSystem.INSTANCE.makeFile(filePath14);
-            File localFile14 = BFileSystem.INSTANCE.pathToLocalFile(filePath14);
-            FileWriter fw = new FileWriter(localFile14, false);
-            fw.write("\n" +
-                    " require([\"baja!\"], function (baja) {\"use strict\";\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "        var allAlarmSub = new baja.Subscriber(); \n" +
-                    "        \n" +
-                    "            allAlarmSub.attach(\"changed\", function(prop) {\n" +
-                    "            \n" +
-                    "            document.getElementById(\"AllAlarms\").innerHTML = \"All Alarms (\" + this.getAlarmCount() + \")\";\n" +
-                    "              \n" +
-                    "                  var val = this.getAlarmCount();\n" +
-                    "                  \n" +
-                    "                 if (val > 0.5){\n" +
-                    "                document.getElementById(\"AllAlarms\").style=\"animation:alarm 2.5s infinite;\"\n" +
-                    "            }\n" +
-                    "            else {\n" +
-                    "                                document.getElementById(\"AllAlarms\").style=\"animation:none;\"\n" +
-                    "\n" +
-                    "\n" +
-                    "            }\n" +
-                    "\n" +
-                    "            });\n" +
-                    "             //this is the link to the alarm count on the alarm service wiresheet, either name it AllAlarms or copy your name here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
-                    "               subscriber: allAlarmSub\n" +
-                    "            });\n" +
-                    "            \n" +
-                    "            var allNotifSub = new baja.Subscriber(); \n" +
-                    "        \n" +
-                    "            allNotifSub.attach(\"changed\", function(prop) {\n" +
-                    "            \n" +
-                    "            document.getElementById(\"AllNotifications\").innerHTML = \"All Notifications (\" + this.getNotificationCount() + \")\";\n" +
-                    "                  var val = this.getNotificationCount();\n" +
-                    "                  \n" +
-                    "                 if (val > 0.5){\n" +
-                    "                document.getElementById(\"AllNotifications\").style=\"animation:notification 2.5s infinite;\"\n" +
-                    "            }\n" +
-                    "            else {\n" +
-                    "                                document.getElementById(\"AllNotifications\").style=\"animation:none;\"\n" +
-                    "\n" +
-                    "\n" +
-                    "            }\n" +
-                    "\n" +
-                    "\n" +
-                    "            });\n" +
-                    "             //this is the link to the alarm count on the alarm service wiresheet, either name it AllAlarms or copy your name here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
-                    "               subscriber: allNotifSub\n" +
-                    "            });\n" +
-                    "            \n" +
-                    "            \n" +
-                    "            var oatSub = new baja.Subscriber(); \n" +
-                    "\n" +
-                    "            oatSub.attach(\"changed\", function(prop) {\n" +
-                    "              \n" +
-                    "               \n" +
-                    "            \n" +
-                    "            document.getElementById(\"temp\").innerHTML =\"Outdoor Temp: \" + this.getOat() + \" °F\";\n" +
-                    "           var hasOAT = this.getHasOat();\n" +
-                    "            \n" +
-                    "            if (hasOAT == true){\n" +
-                    "                        document.getElementById(\"temp\").style =\"display:inline;\";\n" +
-                    "            }\n" +
-                    "            else{\n" +
-                    "            document.getElementById(\"temp\").style =\"display:none;\";\n" +
-                    "\n" +
-                    "}\n" +
-                    "            });\n" +
-                    "             //this is the link to the OAT, copy your ORD here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
-                    "               subscriber: oatSub\n" +
-                    "            });\n" +
-                    "            \n" +
-                    "                 \n" +
-                    "            var oahSub = new baja.Subscriber(); \n" +
-                    "        \n" +
-                    "            oahSub.attach(\"changed\", function(prop) {\n" +
-                    "            \n" +
-                    "            document.getElementById(\"humid\").innerHTML =\"Outdoor Humidity: \" + this.getOah() + \" %\";\n" +
-                    "            \n" +
-                    "            var hasOAH = this.getHasOah();\n" +
-                    "            \n" +
-                    "            if (hasOAH == true){\n" +
-                    "                        document.getElementById(\"humid\").style =\"display:inline;\";\n" +
-                    "            }\n" +
-                    "            else{\n" +
-                    "            document.getElementById(\"humid\").style =\"display:none;\";\n" +
-                    "\n" +
-                    "}\n" +
-                    "           \n" +
-                    "            });\n" +
-                    "             //this is the link to the OAH, copy your ORD here\n" +
-                    "            baja.Ord.make(\"station:|slot:/Services/" + serviceName + "\").get({\n" +
-                    "               subscriber: oahSub\n" +
-                    "            });\n" +
-                    "            \n" +
-                    "            \n" +
-                    "           \n" +
-                    "            \n" +
-                    "            \n" +
-                    "            \n" +
-                    "            \n" +
-                    "     //get username & append to header\n" +
-                    "    $(\".header-info-username\").empty().append(baja.getUserName());\n" +
-                    "    $(\"#header-info-arrow-down\").on(\"click\", function () {\n" +
-                    "     $(\"#header-info-arrow-down\").css( \"display\", \"none\" );\n" +
-                    "     $(\"#header-info-arrow-up\").css( \"display\", \"table-cell\" );\n" +
-                    "     $(\".header-info-username\").animate({top: \"-100%\"}, 150, function() {\n" +
-                    "      $(\".header-info-logout\").animate({top: 20}, 150);\n" +
-                    "     });\n" +
-                    "    });\n" +
-                    "    //logoff code\n" +
-                    "    $(\"#header-info-arrow-up\").on(\"click\", function () {\n" +
-                    "     $(\"#header-info-arrow-up\").css( \"display\", \"none\" );\n" +
-                    "     $(\"#header-info-arrow-down\").css( \"display\", \"table-cell\" );\n" +
-                    "     $(\".header-info-logout\").animate({top: \"-100%\"}, 150, function() {\n" +
-                    "      $(\".header-info-username\").animate({top: 20}, 150);\n" +
-                    "     });\n" +
-                    "     });\n" +
-                    "    \n" +
-                    "      baja.start();\n" +
-                    "\n" +
-                    "      });\n" +
-                    " \n" +
-                    " \n" +
-                    "\n");
-            fw.close();
-            System.out.println("Success writing to " + fileOrd14.toString());
 
 
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
-            System.out.println("Error writing to " + fileOrd14.toString());
+
+        //use an ORD to retrieve our starting file
+        BOrd bajascriptFileQuery =  BOrd.make("module://nTools/html5/js/bajascript.js");
+        //use a try catch block in case the file doesn't exist
+        try
+        {
+            //if we are executing this code from a component in the station,
+            //we can resolve our query using the this keyword
+            BIFile myBajascriptFile = (BIFile)bajascriptFileQuery.get(this);
+
+            //create an input stream reader from the file input stream
+            InputStreamReader bajascriptIn = new InputStreamReader( myBajascriptFile.getInputStream() );
+
+            //create a try/finally block to force input stream is always closed.
+            try
+            {
+                //use the input stream and create a buffered reader to read
+                //each line
+                BufferedReader bajascriptBin = new BufferedReader( bajascriptIn );
+                BOrd bajascriptFileOrd = getBajascriptJs();
+                BIFile bajascriptFile = null;
+                OrdQuery[] queriesBajascript = bajascriptFileOrd.parse();
+                FilePath bajascriptFilePath = (FilePath) queriesBajascript[queriesBajascript.length - 1];
+                bajascriptFile = BFileSystem.INSTANCE.makeFile(bajascriptFilePath);
+                File bajascriptLocalFile = BFileSystem.INSTANCE.pathToLocalFile(bajascriptFilePath);
+                FileWriter bajascriptFw = new FileWriter(bajascriptLocalFile, false);
+                bajascriptFw.write("");
+                bajascriptFw.close();
+                String str;
+                while( ( str = bajascriptBin.readLine() ) != null )
+                {
+                    //do something with our string ...
+
+
+                    String serviceName = getName();
+                    System.out.println("Reading bajascript.js");
+                    String str2 = str.replace("serviceName", serviceName);
+                    System.out.println("Replacing paths");
+
+
+                    try { // Parse the file ORD to retrieve the FilePath. We can safely
+                        // assume the FilePath is the last sub query of the full ORD.
+
+                        FileWriter bajascriptFw2 = new FileWriter(bajascriptLocalFile, true);
+                        bajascriptFw2.write(str2 +"\n");
+                        bajascriptFw2.close();
+                        System.out.println("Success writing line to" + bajascriptFileOrd.toString());
+
+
+                    } catch (Exception e) // Indicates problem creating file
+                    { // Call configFail() to set the service into fault
+                        System.out.println("Error writing to " + bajascriptFileOrd.toString());
+                    }
+
+                }
+
+            }
+            //make sure to close the input stream
+            finally
+            {
+                bajascriptIn.close();
+            }
+
+        }
+//handle case where file isn't found or doesn't exist.
+        catch(UnresolvedException re)
+        {
+            System.out.println("Error reading " + bajascriptFileQuery);
+
+        }
+//handle IO exceptions from trying to read from file
+        catch(IOException ioe)
+        {
+            System.out.println("Error reading " + bajascriptFileQuery);
         }
 
-        BOrd fileOrd15 = getIndexHTML();
-        BIFile file15 = null;
+
+
+
+
+
+
         String schedulePath = null;
         String logoPath = getLogoPath().toString();
         String siteTitle = getSiteTitle();
@@ -2522,671 +2457,58 @@ public class BHTML5 extends BComponent {
 
 
 
-        BOrd fileOrd16 = getScriptJS();
-        BIFile file16 = null;
 
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
-            OrdQuery[] queries16 = fileOrd16.parse();
-            FilePath filePath16 = (FilePath) queries16[queries16.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
-            file16 = BFileSystem.INSTANCE.makeFile(filePath16);
-            File localFile16 = BFileSystem.INSTANCE.pathToLocalFile(filePath16);
-            FileWriter fw = new FileWriter(localFile16, false);
-            fw.write("\n" +
-                    "( function( $ ) {\n" +
-                    "$( document ).ready(function() {\n" +
-                    "$('#cssmenu').prepend('<div id=\"menu-button\">Menu</div>');\n" +
-                    " $('#cssmenu #menu-button').on('click', function(){\n" +
-                    "  var menu = $(this).next('ul');\n" +
-                    "  if (menu.hasClass('open')) {\n" +
-                    "   menu.removeClass('open');\n" +
-                    "  }\n" +
-                    "  else {\n" +
-                    "   menu.addClass('open');\n" +
-                    "  }\n" +
-                    " });\n" +
-                    "  $('#cssmenu ul').on('click', 'a', function(){\n" +
-                    "  var menu = $('#cssmenu #menu-button').next('ul');\n" +
-                    "  if (menu.hasClass('open')) {\n" +
-                    "   menu.removeClass('open');\n" +
-                    "  }\n" +
-                    "  else {\n" +
-                    "   menu.addClass('open');\n" +
-                    "  }\n" +
-                    " });\n" +
-                    " $('#cssmenu ul ul').on('click', 'a', function(){\n" +
-                    "  var menu = $('#cssmenu #menu-button').next('ul');\n" +
-                    "  if (menu.hasClass('open')) {\n" +
-                    "   menu.removeClass('open');\n" +
-                    "  }\n" +
-                    "  else {\n" +
-                    "   menu.addClass('open');\n" +
-                    "  }\n" +
-                    " });\n" +
-                    "});\n" +
-                    "} )( jQuery );\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n");
-            fw.close();
-            System.out.println("Success writing to " + fileOrd16.toString());
-
-
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
-            System.out.println("Error writing to " + fileOrd16.toString());
-        }
-        BOrd fileOrd17 = getStyleCSS();
-        BIFile file17 = null;
-
-        try { // Parse the file ORD to retrieve the FilePath. We can safely
-            // assume the FilePath is the last sub query of the full ORD.
-            OrdQuery[] queries17 = fileOrd17.parse();
-            FilePath filePath17 = (FilePath) queries17[queries17.length - 1];
-            // Once we have the FilePath, we use it to create the file.
-            // Niagara provides a BFileSystem space which gives us access
-            // to the local file system where we create the file:
-            file17 = BFileSystem.INSTANCE.makeFile(filePath17);
-            File localFile17 = BFileSystem.INSTANCE.pathToLocalFile(filePath17);
-            FileWriter fw = new FileWriter(localFile17, false);
-            fw.write(".iframe-container {\n" +
-                    "  overflow: hidden;\n" +
-                    "  padding-top: 49.5%;\n" +
-                    "  position: relative;\n" +
-                    "  z-index: 1;\n" +
-                    "}\n" +
-                    " \n" +
-                    ".iframe-container iframe {\n" +
-                    "   border: 0;\n" +
-                    "   height: 100%;\n" +
-                    "   left: 0;\n" +
-                    "   position: absolute;\n" +
-                    "   top: 0;\n" +
-                    "   width: 100%;\n" +
-                    "}\n" +
-                    "/* 4x3 Aspect Ratio */\n" +
-                    ".iframe-container-4x3 {\n" +
-                    "  padding-top: 75%;\n" +
-                    "}\n" +
-                    "\n" +
-                    "body {\n" +
-                    "overflow-y: auto;\n" +
-                    "overflow-x: auto;\n" +
-                    "}\n" +
-                    "\n" +
-                    "iframe {\n" +
-                    "overflow-y:auto;\n" +
-                    "overflow-x:auto;\n" +
-                    "}\n" +
-                    "/*Generally everything below this point should work out of the box and not need to be changed*/\n" +
-                    "\n" +
-                    "/*navbar*/\n" +
-                    "\n" +
-                    "#cssmenu,\n" +
-                    "#cssmenu ul,\n" +
-                    "#cssmenu ul li,\n" +
-                    "#cssmenu ul li a,\n" +
-                    "#cssmenu #menu-button {\n" +
-                    "  margin: 0;\n" +
-                    "  padding: 0;\n" +
-                    "  border: 0;\n" +
-                    "  list-style: none;\n" +
-                    "  line-height: 1;\n" +
-                    "  display: block;\n" +
-                    "  position: relative;\n" +
-                    "  -webkit-box-sizing: border-box;\n" +
-                    "  -moz-box-sizing: border-box;\n" +
-                    "  box-sizing: border-box;\n" +
-                    "  z-index: 2;\n" +
-                    "  \n" +
-                    "}\n" +
-                    "#cssmenu:after,\n" +
-                    "#cssmenu > ul:after {\n" +
-                    "  content: \".\";\n" +
-                    "  display: block;\n" +
-                    "  clear: both;\n" +
-                    "  visibility: hidden;\n" +
-                    "  line-height: 0;\n" +
-                    "  height: 0;\n" +
-                    "}\n" +
-                    "#cssmenu #menu-button {\n" +
-                    "  display: none;\n" +
-                    "}\n" +
-                    "#cssmenu {\n" +
-                    "  width: auto;\n" +
-                    "  font-family:Helvetica, sans-serif;\n" +
-                    "  background: #de851a;\n" +
-                    "  background: -moz-linear-gradient(top, #de851a 0%, #F7941D 100%);\n" +
-                    "  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #de851a), color-stop(100%, #F7941D));\n" +
-                    "  background: -webkit-linear-gradient(top, #de851a 0%, #F7941D 100%);\n" +
-                    "  background: -o-linear-gradient(top, #de851a 0%, #F7941D 100%);\n" +
-                    "  background: -ms-linear-gradient(top, #de851a 0%, #F7941D 100%);\n" +
-                    "  background: linear-gradient(to bottom, #de851a 0%, #F7941D 100%);\n" +
-                    "}\n" +
-                    "#cssmenu > ul {\n" +
-                    "  background: url('file:^graphics/images/bg.png');\n" +
-                    "  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);\n" +
-                    "}\n" +
-                    "#cssmenu.align-right > ul > li {\n" +
-                    "  float: right;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li {\n" +
-                    "  float: left;\n" +
-                    "  display: inline-block;\n" +
-                    "}\n" +
-                    "#cssmenu.align-center > ul {\n" +
-                    "  float: none;\n" +
-                    "  text-align: center;\n" +
-                    "}\n" +
-                    "#cssmenu.align-center > ul > li {\n" +
-                    "  float: none;\n" +
-                    "}\n" +
-                    "#cssmenu.align-center ul ul {\n" +
-                    "  text-align: left;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li > a {\n" +
-                    "  padding: 18px 25px 21px 25px;\n" +
-                    "  border-right: 1px solid rgba(80, 80, 80, 0.12);\n" +
-                    "  text-decoration: none;\n" +
-                    "  font-size: 15px;\n" +
-                    "  font-weight: 700;\n" +
-                    "  color: #fff;\n" +
-                    "  text-shadow:\n" +
-                    "   -1px -1px 0 #606060;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li:hover > a,\n" +
-                    "#cssmenu > ul > li > a:hover,\n" +
-                    "#cssmenu > ul > li.active > a {\n" +
-                    "  color: #ffffff;\n" +
-                    "  background: #F7941D;\n" +
-                    "  background: rgba(200, 200, 200, 0.4);\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li.has-sub > a {\n" +
-                    "  padding-right: 45px;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li.has-sub > a::after {\n" +
-                    " \n" +
-                    "  position: absolute;\n" +
-                    "  width: 0;\n" +
-                    "  height: 0;\n" +
-                    "  border: 6px solid transparent;\n" +
-                    "  border-top-color: #fff;\n" +
-                    "  right: 17px;\n" +
-                    "  top: 22px;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li.has-sub.active > a::after,\n" +
-                    "#cssmenu > ul > li.has-sub:hover > a {\n" +
-                    "  border-top-color: #ffffff;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul {\n" +
-                    "  position: absolute;\n" +
-                    "  left: -9999px;\n" +
-                    "  top: 60px;\n" +
-                    "  padding-top: 6px;\n" +
-                    "  font-size: 13px;\n" +
-                    "  opacity: 0;\n" +
-                    "  -webkit-transition: top 0.2s ease, opacity 0.2s ease-in;\n" +
-                    "  -moz-transition: top 0.2s ease, opacity 0.2s ease-in;\n" +
-                    "  -ms-transition: top 0.2s ease, opacity 0.2s ease-in;\n" +
-                    "  -o-transition: top 0.2s ease, opacity 0.2s ease-in;\n" +
-                    "  transition: top 0.2s ease, opacity 0.2s ease-in;\n" +
-                    "  \n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul {\n" +
-                    "  text-align: right;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li > ul::after {\n" +
-                    "  content: \"\";\n" +
-                    "  position: absolute;\n" +
-                    "  width: 0;\n" +
-                    "  height: 0;\n" +
-                    "  border: 5px solid transparent;\n" +
-                    "  border-bottom-color: #ffffff;\n" +
-                    "  top: -4px;\n" +
-                    "  left: 20px;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right > ul > li > ul::after {\n" +
-                    "  left: auto;\n" +
-                    "  right: 20px;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul ul::after {\n" +
-                    "  content: \"\";\n" +
-                    "  position: absolute;\n" +
-                    "  width: 0;\n" +
-                    "  height: 0;\n" +
-                    "  border: 5px solid transparent;\n" +
-                    "  border-right-color: #ffffff;\n" +
-                    "  top: 11px;\n" +
-                    "  left: -4px;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul ul::after {\n" +
-                    "  border-right-color: transparent;\n" +
-                    "  border-left-color: #ffffff;\n" +
-                    "  left: auto;\n" +
-                    "  right: -4px;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li > ul {\n" +
-                    "  top: 120px;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li:hover > ul {\n" +
-                    "  top: 52px;\n" +
-                    "  left: 0;\n" +
-                    "  opacity: 1;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right > ul > li:hover > ul {\n" +
-                    "  left: auto;\n" +
-                    "  right: 0;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul ul {\n" +
-                    "  padding-top: 0;\n" +
-                    "  padding-left: 6px;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul ul {\n" +
-                    "  padding-right: 6px;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul > li:hover > ul {\n" +
-                    "  left: 180px;\n" +
-                    "  top: 0;\n" +
-                    "  opacity: 1;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul > li:hover > ul {\n" +
-                    "  left: auto;\n" +
-                    "  right: 100%;\n" +
-                    "  opacity: 1;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul li a {\n" +
-                    "  text-decoration: none;\n" +
-                    "  font-weight: 400;\n" +
-                    "  padding: 11px 25px;\n" +
-                    "  width: 180px;\n" +
-                    "  color: #606060;\n" +
-                    "  background: #e9eaea;\n" +
-                    "  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.1), -1px 1px 1px rgba(0, 0, 0, 0.1);\n" +
-                    "  \n" +
-                    "}\n" +
-                    "#cssmenu ul ul li:hover > a,\n" +
-                    "#cssmenu ul ul li.active > a {\n" +
-                    "   \n" +
-                    "  font-weight: bold;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul li:first-child > a {\n" +
-                    "  border-top-left-radius: 3px;\n" +
-                    "  border-top-right-radius: 3px;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul li:last-child > a {\n" +
-                    "  border-bottom-left-radius: 3px;\n" +
-                    "  border-bottom-right-radius: 3px;\n" +
-                    "}\n" +
-                    "#cssmenu > ul > li > ul::after {\n" +
-                    "  position: absolute;\n" +
-                    "  display: block;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul li.has-sub > a::after {\n" +
-                    "  content: \"\";\n" +
-                    "  position: absolute;\n" +
-                    "  width: 0;\n" +
-                    "  height: 0;\n" +
-                    "  border: 4px solid transparent;\n" +
-                    "  border-left-color: #777777;\n" +
-                    "  right: 17px;\n" +
-                    "  top: 14px;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul li.has-sub > a::after {\n" +
-                    "  border-left-color: transparent;\n" +
-                    "  border-right-color: #777777;\n" +
-                    "  right: auto;\n" +
-                    "  left: 17px;\n" +
-                    "}\n" +
-                    "#cssmenu ul ul li.has-sub.active > a::after,\n" +
-                    "#cssmenu ul ul li.has-sub:hover > a::after {\n" +
-                    "  border-left-color: #333333;\n" +
-                    "}\n" +
-                    "#cssmenu.align-right ul ul li.has-sub.active > a::after,\n" +
-                    "#cssmenu.align-right ul ul li.has-sub:hover > a::after {\n" +
-                    "  border-right-color: #333333;\n" +
-                    "  border-left-color: transparent;\n" +
-                    "}\n" +
-                    "/*navbar*/\n" +
-                    "@media all and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {\n" +
-                    "  \n" +
-                    ".iframe-container {\n" +
-                    "  overflow: hidden;\n" +
-                    "  padding-top: 150%;\n" +
-                    "  position: relative;\n" +
-                    "}\n" +
-                    " \n" +
-                    ".iframe-container iframe {\n" +
-                    "   border: 0;\n" +
-                    "   height: 100%;\n" +
-                    "   left: 0;\n" +
-                    "   position: absolute;\n" +
-                    "   top: 0;\n" +
-                    "   width: 100%;\n" +
-                    "}\n" +
-                    "/* 4x3 Aspect Ratio */\n" +
-                    ".iframe-container-4x3 {\n" +
-                    "  padding-top: 75%;\n" +
-                    "}\n" +
-                    "\n" +
-                    "#cssmenu {\n" +
-                    "    background: #de851a;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul {\n" +
-                    "    display: none;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul.open {\n" +
-                    "    display: block;\n" +
-                    "    border-top: 1px solid rgba(0, 0, 0, 0.1);\n" +
-                    "  }\n" +
-                    "  #cssmenu.align-right > ul {\n" +
-                    "    float: none;\n" +
-                    "  }\n" +
-                    "  #cssmenu.align-center > ul {\n" +
-                    "    text-align: left;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul > li,\n" +
-                    "  #cssmenu.align-right > ul > li {\n" +
-                    "    float: none;\n" +
-                    "    display: block;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul > li > a {\n" +
-                    "    padding: 18px 25px 18px 25px;\n" +
-                    "    border-right: 0;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul > li:hover > a,\n" +
-                    "  #cssmenu > ul > li.active > a {\n" +
-                    "    background: rgba(0, 0, 0, 0.1);\n" +
-                    "  }\n" +
-                    "  #cssmenu #menu-button {\n" +
-                    "    display: block;\n" +
-                    "    text-decoration: none;\n" +
-                    "    font-size: 13px;\n" +
-                    "    font-weight: 700;\n" +
-                    "    color: #fff;\n" +
-                    "    padding: 18px 25px 18px 25px;\n" +
-                    "    text-transform: uppercase;\n" +
-                    "    letter-spacing: 1px;\n" +
-                    "    background: url('file:^graphics/images/bg.png');\n" +
-                    "    cursor: pointer;\n" +
-                    "  }\n" +
-                    "  #cssmenu ul ul,\n" +
-                    "  #cssmenu ul li:hover > ul,\n" +
-                    "  #cssmenu > ul > li > ul,\n" +
-                    "  #cssmenu ul ul ul,\n" +
-                    "  #cssmenu ul ul li:hover > ul,\n" +
-                    "  #cssmenu.align-right ul ul,\n" +
-                    "  #cssmenu.align-right ul li:hover > ul,\n" +
-                    "  #cssmenu.align-right > ul > li > ul,\n" +
-                    "  #cssmenu.align-right ul ul ul,\n" +
-                    "  #cssmenu.align-right ul ul li:hover > ul {\n" +
-                    "    left: 0;\n" +
-                    "    right: auto;\n" +
-                    "    top: auto;\n" +
-                    "    opacity: 1;\n" +
-                    "    width: 100%;\n" +
-                    "    padding: 0;\n" +
-                    "    position: relative;\n" +
-                    "    text-align: left;\n" +
-                    "  }\n" +
-                    "  #cssmenu ul ul li {\n" +
-                    "    width: 100%;\n" +
-                    "  }\n" +
-                    "  #cssmenu ul ul li a {\n" +
-                    "    width: 100%;\n" +
-                    "    box-shadow: none;\n" +
-                    "    padding-left: 35px;\n" +
-                    "  }\n" +
-                    "  #cssmenu ul ul ul li a {\n" +
-                    "    padding-left: 45px;\n" +
-                    "  }\n" +
-                    "  #cssmenu ul ul li:first-child > a,\n" +
-                    "  #cssmenu ul ul li:last-child > a {\n" +
-                    "    border-radius: 0;\n" +
-                    "  }\n" +
-                    "  #cssmenu #menu-button::after {\n" +
-                    "    display: block;\n" +
-                    "    content: '';\n" +
-                    "    position: absolute;\n" +
-                    "    height: 3px;\n" +
-                    "    width: 22px;\n" +
-                    "    border-top: 2px solid #fff;\n" +
-                    "    border-bottom: 2px solid #fff;\n" +
-                    "    right: 25px;\n" +
-                    "    top: 18px;\n" +
-                    "  }\n" +
-                    "  #cssmenu #menu-button::before {\n" +
-                    "    display: block;\n" +
-                    "    content: '';\n" +
-                    "    position: absolute;\n" +
-                    "    height: 3px;\n" +
-                    "    width: 22px;\n" +
-                    "    border-top: 2px solid #fff;\n" +
-                    "    right: 25px;\n" +
-                    "    top: 28px;\n" +
-                    "  }\n" +
-                    "  #cssmenu > ul > li.has-sub > a::after,\n" +
-                    "  #cssmenu ul ul li.has-sub > a::after {\n" +
-                    "    display: none;\n" +
-                    "  }\n" +
-                    "}\n" +
-                    "#cssmenu {\n" +
-                    "\n" +
-                    " position: static;\n" +
-                    "    position: -webkit-sticky;\n" +
-                    " position: -moz-sticky;\n" +
-                    " position: -ms-sticky;\n" +
-                    " position: -o-sticky;\n" +
-                    " position: sticky;\n" +
-                    " top: 0px;\n" +
-                    "}\n" +
-                    "\n" +
-                    "/*Header*/\n" +
-                    "#header {\n" +
-                    "    width: 100%;\n" +
-                    "    height: 60px;\n" +
-                    "    margin: auto;\n" +
-                    "    padding: 10px;\n" +
-                    "}\n" +
-                    "#header-image {\n" +
-                    "    width: 50%;\n" +
-                    "    height: 60px;\n" +
-                    "    float: left;\n" +
-                    "}\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    "\n" +
-                    " #header-info {\n" +
-                    "    margin-left: 50%;\n" +
-                    "    height: 60px;\n" +
-                    "    padding-right:25px;\n" +
-                    "    \n" +
-                    "}\n" +
-                    "\n" +
-                    "\n" +
-                    "#header-info-username {\n" +
-                    "    color: #606060;\n" +
-                    " text-align: right;\n" +
-                    " margin-top: 10px;\n" +
-                    " padding-right: 40px;\n" +
-                    " font-weight: bold;\n" +
-                    " line-height: 0.3;\n" +
-                    " \n" +
-                    "}\n" +
-                    ".header-info-username {\n" +
-                    "    position: absolute;\n" +
-                    "    top: 18px;\n" +
-                    "    right:32px;\n" +
-                    "     line-height: 0.3;\n" +
-                    "}\n" +
-                    "\n" +
-                    ".header-info-logout {\n" +
-                    "    position: absolute;\n" +
-                    "    top: -100%;\n" +
-                    "    right: 32px;\n" +
-                    "     line-height: 0.3;\n" +
-                    "}\n" +
-                    "\n" +
-                    ".header-info-logout:hover,.header-info-logout:active {\n" +
-                    "    text-decoration: underline;\n" +
-                    "}\n" +
-                    "\n" +
-                    "#header-info-arrow-down {\n" +
-                    "    width: 9px;\n" +
-                    " cursor: pointer;\n" +
-                    "    line-height: 0.3;\n" +
-                    "    position: absolute;\n" +
-                    "    top: 18px;\n" +
-                    "    right:20px;\n" +
-                    "     color: #606060;\n" +
-                    "   \n" +
-                    "}\n" +
-                    "\n" +
-                    "#header-info-arrow-up {\n" +
-                    "    display: none;\n" +
-                    "    width: 9px;\n" +
-                    " cursor: pointer;\n" +
-                    "    line-height: 0.3;\n" +
-                    "    position: absolute;\n" +
-                    "    top: 18px;\n" +
-                    "    right:20px;\n" +
-                    "     color: #606060;\n" +
-                    "}\n" +
-                    "\n" +
-                    "\n" +
-                    "#temp {        \n" +
-                    " position: absolute;\n" +
-                    "    top: 35px;\n" +
-                    "    right: 20px;  \n" +
-                    "    height: 12px;   \n" +
-                    "    text-decoration: none; \n" +
-                    "    text-align: right;\n" +
-                    "    line-height: 120%;\n" +
-                    "  \n" +
-                    "}  \n" +
-                    "\n" +
-                    "#humid{        \n" +
-                    " position: absolute;\n" +
-                    "    top: 60px;\n" +
-                    "    right: 20px;  \n" +
-                    "    height: 12px;   \n" +
-                    "    text-decoration: none; \n" +
-                    "    text-align: right;\n" +
-                    "    line-height: 120%;\n" +
-                    "  \n" +
-                    "}  \n" +
-                    "\n" +
-                    "@keyframes alarm{\n" +
-                    "    0%{     color: #fff;    }\n" +
-                    "    50%{   color: #cf1624;    }\n" +
-                    "    \n" +
-                    "}\n" +
-                    "\n" +
-                    "@keyframes notification{\n" +
-                    "    0%{     color: #fff;    }\n" +
-                    "    50%{   color: #606060;    }\n" +
-                    "    \n" +
-                    "}\n" +
-                    "\n" +
-                    "\n");
-            fw.close();
-            System.out.println("Success writing to " + fileOrd17.toString());
-
-
-        } catch (Exception e) // Indicates problem creating file
-        { // Call configFail() to set the service into fault
-            System.out.println("Error writing to " + fileOrd17.toString());
-        }
-
-        //You can also create a File Path from an ORD
-        BOrd query = getIndexHTML();
-        OrdQuery[] queries = query.parse();
-        FilePath fp = (FilePath)queries[queries.length - 1];
-
-
-//Our BIFile object that we will get back
-        BIFile myFile = null;
-
-//Wrap our call in a try catch block to handle IO exception
-        try
-        {
-            myFile = BFileSystem.INSTANCE.makeFile(fp);
-
-            //manipulate new file ...
-
-        }catch(IOException ioe)
-        {
-            //handle error
-        }
-//use an ORD to retrieve our file
-        BOrd fileQuery =  BOrd.make("module://nTools/html5/html/index.html");
-
-//use a try catch block in case the file doesn't exist
+        //use an ORD to retrieve our starting file
+        BOrd scriptFileQuery =  BOrd.make("module://nTools/html5/js/script.js");
+        //use a try catch block in case the file doesn't exist
         try
         {
             //if we are executing this code from a component in the station,
             //we can resolve our query using the this keyword
-            BIFile myFile3 = (BIFile)fileQuery.get(this);
+            BIFile myScriptFile = (BIFile)scriptFileQuery.get(this);
 
             //create an input stream reader from the file input stream
-            InputStreamReader in = new InputStreamReader( myFile3.getInputStream() );
+            InputStreamReader scriptIn = new InputStreamReader( myScriptFile.getInputStream() );
 
             //create a try/finally block to force input stream is always closed.
             try
             {
                 //use the input stream and create a buffered reader to read
                 //each line
-                BufferedReader bin = new BufferedReader( in );
-
+                BufferedReader scriptBin = new BufferedReader( scriptIn );
+                BOrd scriptFileOrd = getScriptJS();
+                BIFile scriptFile = null;
+                // Parse the file ORD to retrieve the FilePath. We can safely
+                // assume the FilePath is the last sub query of the full ORD.
+                OrdQuery[] queriesScript = scriptFileOrd.parse();
+                FilePath scriptFilePath = (FilePath) queriesScript[queriesScript.length - 1];
+                // Once we have the FilePath, we use it to create the file.
+                // Niagara provides a BFileSystem space which gives us access
+                // to the local file system where we create the file:
+                scriptFile = BFileSystem.INSTANCE.makeFile(scriptFilePath);
+                File scriptLocalFile = BFileSystem.INSTANCE.pathToLocalFile(scriptFilePath);
+                FileWriter scriptFw = new FileWriter(scriptLocalFile, false);
+                scriptFw.write("");
+                scriptFw.close();
+                System.out.println("Success writing line to" + scriptFileOrd.toString());
                 String str;
-                while( ( str = bin.readLine() ) != null )
+                while( ( str = scriptBin.readLine() ) != null )
                 {
+                    //do something with our string ...
 
 
-                    //You can also create a File Path from an ORD
-                    BOrd myFileOrd = getIndexHTML();
+                    System.out.println("Reading script.js");
 
-                    //use a try catch block in case the file doesn't exist
-                    try
-                    {
-
-                        String str2 = str.replace("homePagePath", homePagePath).replace("logoPath", logoPath).replace("historiesMenu",historiesMenu).replace("schedulesMenu",schedulesMenu).replace("reportMenu",reportMenu).replace("docMenu",docMenu).replace("notificationMenu",notificationMenu).replace("alarmMenu",alarmMenu).replace("entSecMenu",entSecMenu);
-
+                    try {
+                        FileWriter scriptFw2 = new FileWriter(scriptLocalFile, true);
+                        scriptFw2.write(str +"\n");
+                        scriptFw2.close();
+                        System.out.println("Success writing line to" + scriptFileOrd.toString());
 
 
-
-
-
-
-
-
-                        //if we are executing this code from a component in the station,
-                        //we can resolve our query using the this keyword
-                        BIFile myFile2 = (BIFile)myFileOrd.get(this);
-
-                        FilePath filePath = myFile2.getFilePath();
-                        File localFile22 = BFileSystem.INSTANCE.pathToLocalFile(filePath);
-
-                        FileWriter fw = new FileWriter(localFile22,true);
-                        fw.write(str2 + "\n");
-                        fw.close();
-                    }
-                    //handle case where file isn't found or doesn't exist.
-                    catch(UnresolvedException re)
-                    {
-
-                    }
-                    //handle IO exceptions from trying to write to the file
-                    catch(IOException ioe)
-                    {
-
+                    } catch (Exception e) // Indicates problem creating file
+                    { // Call configFail() to set the service into fault
+                        System.out.println("Error writing to " + scriptFileOrd.toString());
                     }
 
                 }
@@ -3195,20 +2517,190 @@ public class BHTML5 extends BComponent {
             //make sure to close the input stream
             finally
             {
-                in.close();
+                scriptIn.close();
             }
 
         }
 //handle case where file isn't found or doesn't exist.
         catch(UnresolvedException re)
         {
+            System.out.println("Error reading " + scriptFileQuery);
 
         }
 //handle IO exceptions from trying to read from file
         catch(IOException ioe)
         {
+            System.out.println("Error reading " + scriptFileQuery);
+        }
+
+
+
+
+
+
+
+
+
+        //use an ORD to retrieve our starting file
+        BOrd cssFileQuery =  BOrd.make("module://nTools/html5/css/style.css");
+        //use a try catch block in case the file doesn't exist
+        try
+        {
+            //if we are executing this code from a component in the station,
+            //we can resolve our query using the this keyword
+            BIFile myCssFile = (BIFile)cssFileQuery.get(this);
+
+            //create an input stream reader from the file input stream
+            InputStreamReader cssIn = new InputStreamReader( myCssFile.getInputStream() );
+
+            //create a try/finally block to force input stream is always closed.
+            try
+            {
+                //use the input stream and create a buffered reader to read
+                //each line
+                BufferedReader cssBin = new BufferedReader( cssIn );
+                BOrd cssFileOrd = getStyleCSS();
+                BIFile cssFile = null;
+                // assume the FilePath is the last sub query of the full ORD.
+                OrdQuery[] queriesCss = cssFileOrd.parse();
+                FilePath cssFilePath = (FilePath) queriesCss[queriesCss.length - 1];
+                // Once we have the FilePath, we use it to create the file.
+                // Niagara provides a BFileSystem space which gives us access
+                // to the local file system where we create the file:
+                cssFile = BFileSystem.INSTANCE.makeFile(cssFilePath);
+                File cssLocalFile = BFileSystem.INSTANCE.pathToLocalFile(cssFilePath);
+                FileWriter cssFw = new FileWriter(cssLocalFile, false);
+                cssFw.write("");
+                cssFw.close();
+                System.out.println("Success clearing " + cssFileOrd.toString());
+
+                System.out.println("Success writing line to" + cssFileOrd.toString());
+
+                String str;
+                while( ( str = cssBin.readLine() ) != null )
+                {
+                    //do something with our string ...
+
+
+
+                    System.out.println("Reading CSS");
+
+                    try {
+                        FileWriter cssFw2 = new FileWriter(cssLocalFile, true);
+                        cssFw2.write(str +"\n");
+                        cssFw2.close();
+                        System.out.println("Success writing line to" + cssFileOrd.toString());
+
+
+                    } catch (Exception e) // Indicates problem creating file
+                    { // Call configFail() to set the service into fault
+                        System.out.println("Error writing to " + cssFileOrd.toString());
+                    }
+
+                }
+
+            }
+            //make sure to close the input stream
+            finally
+            {
+                cssIn.close();
+            }
 
         }
+//handle case where file isn't found or doesn't exist.
+        catch(UnresolvedException re)
+        {
+            System.out.println("Error reading " + cssFileQuery);
+
+        }
+//handle IO exceptions from trying to read from file
+        catch(IOException ioe)
+        {
+            System.out.println("Error reading " + cssFileQuery);
+        }
+
+
+
+
+        //use an ORD to retrieve our starting file
+        BOrd htmlFileQuery =  BOrd.make("module://nTools/html5/html/index.html");
+       //use a try catch block in case the file doesn't exist
+        try
+        {
+            //if we are executing this code from a component in the station,
+            //we can resolve our query using the this keyword
+            BIFile myHtmlFile = (BIFile)htmlFileQuery.get(this);
+
+            //create an input stream reader from the file input stream
+            InputStreamReader htmlIn = new InputStreamReader( myHtmlFile.getInputStream() );
+
+            //create a try/finally block to force input stream is always closed.
+            try
+            {
+                //use the input stream and create a buffered reader to read
+                //each line
+                BufferedReader htmlBin = new BufferedReader( htmlIn );
+                BOrd htmlFileOrd = getIndexHTML();
+                BIFile htmlFile = null;
+                // Parse the file ORD to retrieve the FilePath. We can safely
+                // assume the FilePath is the last sub query of the full ORD.
+                OrdQuery[] queriesHtml = htmlFileOrd.parse();
+                FilePath htmlFilePath = (FilePath) queriesHtml[queriesHtml.length - 1];
+                // Once we have the FilePath, we use it to create the file.
+                // Niagara provides a BFileSystem space which gives us access
+                // to the local file system where we create the file:
+                htmlFile = BFileSystem.INSTANCE.makeFile(htmlFilePath);
+                File localHtmlFile = BFileSystem.INSTANCE.pathToLocalFile(htmlFilePath);
+                FileWriter fw = new FileWriter(localHtmlFile, false);
+                fw.write("");
+                fw.close();
+                System.out.println("Success writing line to " + htmlFileOrd.toString());
+                String str;
+                while( ( str = htmlBin.readLine() ) != null )
+                {
+                    //do something with our string ...
+
+
+                    System.out.println("Reading HTML");
+
+                    String str2 = str.replace("homePagePath", homePagePath).replace("logoPath", logoPath).replace("historiesMenu",historiesMenu).replace("schedulesMenu",schedulesMenu).replace("reportMenu",reportMenu).replace("docMenu",docMenu).replace("notificationMenu",notificationMenu).replace("alarmMenu",alarmMenu).replace("entSecMenu",entSecMenu);
+                    System.out.println("Replacing Paths");
+                    try {
+                        FileWriter htmlFw2 = new FileWriter(localHtmlFile, true);
+                        htmlFw2.write(str2 +"\n");
+                        htmlFw2.close();
+                        System.out.println("Success writing line to " + htmlFileOrd.toString());
+
+
+                    } catch (Exception e) // Indicates problem creating file
+                    { // Call configFail() to set the service into fault
+                        System.out.println("Error writing to " + htmlFileOrd.toString());
+                    }
+
+                }
+
+            }
+            //make sure to close the input stream
+            finally
+            {
+                htmlIn.close();
+            }
+
+        }
+//handle case where file isn't found or doesn't exist.
+        catch(UnresolvedException re)
+        {
+            System.out.println("Error reading " + htmlFileQuery);
+
+        }
+//handle IO exceptions from trying to read from file
+        catch(IOException ioe)
+        {
+            System.out.println("Error reading " + htmlFileQuery);
+        }
+
+
+
 
 
 
