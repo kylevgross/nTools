@@ -18,7 +18,6 @@ dependencies {
   compile "Tridium:history-rt:4.7"
   compile "Tridium:schedule-rt:4.7"
   compile "Tridium:bql-rt:4.7"
-  compile "Tridium:aaphp-rt:4.7"
   compile project(":nTools-rt")
 }
 

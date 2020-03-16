@@ -28,6 +28,8 @@ dependencies {
   compile "Tridium:schedule-rt:4.7"
   compile "Tridium:bql-rt:4.7"
   compile "Tridium:gx-rt:4.7"
+  compile "Tridium:neql-rt:4.7'"
+  compile "Tridium:control-rt:4.7'"
 }
 
 moduleTestJar {

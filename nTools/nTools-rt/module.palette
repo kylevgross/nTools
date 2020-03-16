@@ -12,6 +12,11 @@
 
 <p n="FloorplanNavItem" m="kvg=nTools" t="kvg:FloorplanNavItem" />
 </p>
+
+<p m="b=baja" t="b:UnrestrictedFolder" n="OtherTools">
+
+<p n="AddHistories" m="kvg=nTools" t="kvg:AddHistories" />
+</p>
 </p>
 
 </bajaObjectGraph>

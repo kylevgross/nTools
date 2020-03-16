@@ -38,6 +38,7 @@ import javax.baja.sys.*;
 import javax.baja.naming.*;
 
 
+
 @NiagaraType
 
 @NiagaraProperty(
@@ -2699,16 +2700,14 @@ public class BHTML5 extends BComponent {
             System.out.println("Error reading " + htmlFileQuery);
         }
 
-
-
-
-
-
         System.out.println("HTML Generation completed at: " + date);
         String currentDate = date.toString();
         setHtmlLastGenerated(currentDate);
 
     }
+
+
+
 
     @Override
     public BIcon getIcon() {
