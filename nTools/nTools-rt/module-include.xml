@@ -2,7 +2,6 @@
 <!-- Types -->
 <types>
   <!-- Type Example:<type name="MyClass" class="com.acme.BMyClass"/> -->
-
   <!--com.kvg.nTools-->
   <type class="com.kvg.nTools.BCustomList" name="CustomList"/>
   <type class="com.kvg.nTools.BCustomNavItem" name="CustomNavItem"/>
@@ -11,4 +10,7 @@
   <type class="com.kvg.nTools.BFloorplanList" name="FloorplanList"/>
   <type class="com.kvg.nTools.BFloorplanNavItem" name="FloorplanNavItem"/>
   <type class="com.kvg.nTools.BHTML5" name="HTML5"/>
+  <type class="com.kvg.nTools.BAddHistories" name="AddHistories"/>
+  <!--com.sbs.sbsTools-->
+  <type class="com.kvg.nTools.BAddHistories" name="AddHistories"/>
 </types>
